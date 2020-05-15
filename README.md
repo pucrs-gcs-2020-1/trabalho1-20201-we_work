@@ -2,5 +2,11 @@
 Repositório Inicial do Tabalho 1 GCS 2020/1
 
 Componentes do time:
-- Nome1
-- Nome2
+- LEONARDO CANTO
+- GLAUBER ARAUJO
+- MARCIO CARMO
+- KEVIN FIORENTIN
+- RAFAEL PUHL
+- RODRIGO ROSA
+- ROBSON ANDREI
+- WENDELL DE LACERDA
