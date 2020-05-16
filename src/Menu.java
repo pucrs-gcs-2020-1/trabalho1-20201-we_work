@@ -16,35 +16,39 @@ public class Menu {
                 break;
 
             case 2:
-                trocar_operador();
+                mostrar_operador_atual();
                 break;
 
             case 3:
-                criar_conta();
+                trocar_operador();
                 break;
 
             case 4:
-                selecionar_conta();
+                criar_conta();
                 break;
 
             case 5:
-                adicionar_movimento();
+                selecionar_conta();
                 break;
 
             case 6:
-                consultar_movimentos();
+                adicionar_movimento();
                 break;
 
             case 7:
-                transferir_fundos();
+                consultar_movimentos();
                 break;
 
             case 8:
-                emitir_relatorio();
+                transferir_fundos();
                 break;
 
             case 9:
+                emitir_relatorio();
+                break;
+
             case 10:
+            case 100:
                 break;
 
             default:
@@ -57,21 +61,22 @@ public class Menu {
     private static void mostrar_opcoes() {
         System.out.println("Greetings!");
         System.out.println("1 -> Cadastrar um operador.");
-        System.out.println("2 -> Trocar de operador.");
-        System.out.println("3 -> Criar uma conta.");
-        System.out.println("4 -> Selecionar uma conta.");
-        System.out.println("5 -> Adicionar movimento à conta selecionada");
-        System.out.println("6 -> Consultar movimentos da conta selecionada.");
-        System.out.println("7 -> Transferir fundos de uma conta para a outra.");
-        System.out.println("8 -> Emitir um relatório geral.");
-        System.out.println("9 -> Terminar programa.");
+        System.out.println("2 -> Mostrar operador atual.");
+        System.out.println("3 -> Trocar de operador.");
+        System.out.println("4 -> Criar uma conta.");
+        System.out.println("5 -> Selecionar uma conta.");
+        System.out.println("6 -> Adicionar movimento à conta selecionada");
+        System.out.println("7 -> Consultar movimentos da conta selecionada.");
+        System.out.println("8 -> Transferir fundos de uma conta para a outra.");
+        System.out.println("9 -> Emitir um relatório geral.");
+        System.out.println("10 -> Terminar programa.");
     }
 
     private static Integer ler_resposta_do_usuario() {
 
-        System.out.print("Digite um número: ");
+        System.out.print("Digite o número do comando que deseja executar: ");
 
-        var input = 10;
+        var input = 100;
 
         try {
             input = Integer.parseInt(
@@ -89,6 +94,11 @@ public class Menu {
 
     private static boolean cadastrar_novo_operador() {
         System.out.println("cadastrando novo operador.");
+        return true;
+    }
+
+    private static boolean mostrar_operador_atual() {
+        System.out.println("mostrando operador atual.");
         return true;
     }
 
