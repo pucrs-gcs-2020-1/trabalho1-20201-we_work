@@ -92,48 +92,39 @@ public class Menu {
         return input;
     }
 
-    private static boolean cadastrar_novo_operador() {
+    private static void cadastrar_novo_operador() {
         System.out.println("cadastrando novo operador.");
-        return true;
     }
 
-    private static boolean mostrar_operador_atual() {
+    private static void mostrar_operador_atual() {
         System.out.println("mostrando operador atual.");
-        return true;
     }
 
-    private static boolean trocar_operador() {
+    private static void trocar_operador() {
         System.out.println("trocando operador");
-        return true;
     }
 
-    private static boolean criar_conta() {
+    private static void criar_conta() {
         System.out.println("criando conta.");
-        return true;
     }
 
-    private static boolean selecionar_conta() {
+    private static void selecionar_conta() {
         System.out.println("selecionando conta.");
-        return true;
     }
 
-    private static boolean adicionar_movimento() {
+    private static void adicionar_movimento() {
         System.out.println("adicionando novo movimento.");
-        return true;
     }
 
-    private static boolean consultar_movimentos() {
+    private static void consultar_movimentos() {
         System.out.println("consultando movimentos.");
-        return true;
     }
 
-    private static boolean transferir_fundos() {
+    private static void transferir_fundos() {
         System.out.println("transferindo fundos.");
-        return true;
     }
 
-    private static boolean emitir_relatorio() {
+    private static void emitir_relatorio() {
         System.out.println("emitindo relatórios.");
-        return true;
     }
 }
