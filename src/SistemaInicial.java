@@ -1,7 +1,23 @@
-
+import java.util.ArrayList;
 
 public class SistemaInicial {
-  
+    private ArrayList<ContaBancaria> contas;
 
-  
+    public SistemaInicial() {
+        this.contas = new ArrayList<>();
+        ContaBancaria c1 = new ContaBancaria("789456", "Mick Jagger");
+        ContaBancaria c2 = new ContaBancaria("321539", "Maik Tyson");
+        ContaBancaria c3 = new ContaBancaria("666666", "Angus Young");
+        ContaBancaria c4 = new ContaBancaria("147951", "Cindy Louper");
+        ContaBancaria c5 = new ContaBancaria("888488", "Mohamed Ali");
+        contas.add(c1);
+        contas.add(c2);
+        contas.add(c3);
+        contas.add(c4);
+        contas.add(c5);
+    }
+
+    public ArrayList<ContaBancaria> getContas(){
+        return this.contas;
+    }
 }
