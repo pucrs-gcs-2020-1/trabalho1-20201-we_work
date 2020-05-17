@@ -1,9 +1,9 @@
 public class ContaBancaria implements Conta {
     private double saldo = 0;
-    private int numero;
+    private String numero;
     private String nome;
 
-    public ContaBancaria(int numero, String nome) {
+    public ContaBancaria(String numero, String nome) {
         this.numero = numero;
         this.nome = nome;
     }
@@ -37,5 +37,10 @@ public class ContaBancaria implements Conta {
     @Override
     public double getSaldo() {
         return this.saldo;
+    }
+
+    @Override
+    public String getNumeroConta() {
+        return this.numero;
     }
 }
