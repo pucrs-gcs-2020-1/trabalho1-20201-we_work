@@ -4,8 +4,8 @@ public class App {
     public static void main(String[] args) {
 
         System.out.println("Hello World");
-        ContaBancaria c1 = new ContaBancaria("33","Rafael");
-        ContaBancaria c2 = new ContaBancaria("69","Fulano");
+        ContaBancaria c1 = new ContaBancaria("33","Rafael",40000);
+        ContaBancaria c2 = new ContaBancaria("69","Fulano",50000);
         c1.deposito(7000);
         c1.transferencia(c2,79);
         System.out.println(c2.getSaldo());
@@ -13,9 +13,9 @@ public class App {
         SistemaInicial sis = new SistemaInicial();
         ArrayList<ContaBancaria> contas = sis.getContas();
 
-        /*for (ContaBancaria contaBancaria : contas) {
+        for (ContaBancaria contaBancaria : contas) {
             System.out.println(contaBancaria.getNumeroConta()+" "+contaBancaria.getSaldo());
-        }*/
+        }
 
         double cont=0;
         String ax = "Conta Bancaria \n";

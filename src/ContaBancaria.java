@@ -4,9 +4,10 @@ public class ContaBancaria implements Conta {
     private String nome;
 
 
-    public ContaBancaria(String numero, String nome) {
+    public ContaBancaria(String numero, String nome, double saldo) {
         this.numero = numero;
         this.nome = nome;
+        this.saldo = saldo;
     }
 
     @Override
