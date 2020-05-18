@@ -13,8 +13,18 @@ public class App {
         SistemaInicial sis = new SistemaInicial();
         ArrayList<ContaBancaria> contas = sis.getContas();
 
-        for (ContaBancaria contaBancaria : contas) {
+        /*for (ContaBancaria contaBancaria : contas) {
             System.out.println(contaBancaria.getNumeroConta()+" "+contaBancaria.getSaldo());
+        }*/
+
+        double cont=0;
+        String ax = "Conta Bancaria \n";
+        ax+=String.format("%20s %20s %20s","Numero", "Nome","Saldo")+"\n";
+        for (ContaBancaria r: contas) {
+            ax += r.toString()+"\n";
+            cont+=r.getSaldo();
         }
+        System.out.println(ax);
+        System.out.println(String.format("%40s %20s","Saldo Total: ",cont));
     }
 }

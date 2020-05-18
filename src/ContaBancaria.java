@@ -3,6 +3,7 @@ public class ContaBancaria implements Conta {
     private String numero;
     private String nome;
 
+
     public ContaBancaria(String numero, String nome) {
         this.numero = numero;
         this.nome = nome;
@@ -43,4 +44,13 @@ public class ContaBancaria implements Conta {
     public String getNumeroConta() {
         return this.numero;
     }
+
+    public String toString() {
+        return String.format("%20s %20s %20s",
+                numero,
+                nome,
+                saldo
+        );
+    }
 }
+
