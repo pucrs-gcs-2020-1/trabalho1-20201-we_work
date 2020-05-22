@@ -1,4 +1,4 @@
-# gcs_t1_20201 (o repositório deve ser renomeado para um nome à escolha do grupo)
+# Grupo de Trabalho WE WORK
 Repositório Inicial do Tabalho 1 GCS 2020/1
 
 Componentes do time:
@@ -9,4 +9,10 @@ Componentes do time:
 - RAFAEL PUHL
 - RODRIGO ROSA
 - ROBSON ANDREI
+<<<<<<< HEAD
 - WENDELL DE LACERDA
+=======
+- WENDELL DE LACERDA
+- ARTHUR AMESTRETE
+- CAROLINA FRACÃO
+>>>>>>> 18
