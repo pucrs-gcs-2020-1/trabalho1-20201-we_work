@@ -12,3 +12,5 @@ Componentes do time:
 - WENDELL DE LACERDA
 - ARTHUR AMESTRETE
 - CAROLINA FRACÃO
+
+CALL 22/05 -> [link](https://meet.google.com/ocv-qmcw-nkj)
