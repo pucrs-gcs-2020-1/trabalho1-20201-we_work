@@ -1,56 +1,45 @@
+import java.util.Scanner;
+
 public class Menu {
 
     public void run() {
-
-        while (menu() != 9);
+        while (menu() != 10) ;
     }
 
     private static int menu() {
-
         mostrar_opcoes();
-
         var option = ler_resposta_do_usuario();
         switch (option) {
             case 1:
                 cadastrar_novo_operador();
                 break;
-
             case 2:
                 mostrar_operador_atual();
                 break;
-
             case 3:
                 trocar_operador();
                 break;
-
             case 4:
                 criar_conta();
                 break;
-
             case 5:
                 selecionar_conta();
                 break;
-
             case 6:
                 adicionar_movimento();
                 break;
-
             case 7:
                 consultar_movimentos();
                 break;
-
             case 8:
                 transferir_fundos();
                 break;
-
             case 9:
                 emitir_relatorio();
                 break;
-
             case 10:
-            case 100:
+                System.out.println("Encerrando Programa...");
                 break;
-
             default:
                 System.out.println("Opção inválida, por favor digite novamente.");
                 break;
@@ -73,22 +62,14 @@ public class Menu {
     }
 
     private static Integer ler_resposta_do_usuario() {
-
+        Scanner in = new Scanner(System.in);
         System.out.print("Digite o número do comando que deseja executar: ");
-
         var input = 100;
-
         try {
-            input = Integer.parseInt(
-                        System.console()
-                              .readLine()
-                              .strip()
-                    );
-
+            input = in.nextInt();
         } catch (NumberFormatException exception) {
             System.out.println("O programa só aceita números inteiros.");
         }
-
         return input;
     }
 

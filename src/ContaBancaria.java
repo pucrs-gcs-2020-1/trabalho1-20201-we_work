@@ -1,6 +1,6 @@
 public class ContaBancaria implements Conta {
-    private double saldo = 0;
-    private String numero;
+    protected double saldo = 0;
+    protected String numero;
     private String nome;
 
 
