@@ -1,25 +1,61 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws InterruptedException {
-        List<ContaBancaria> contas;
+        Scanner in = new Scanner(System.in);
+        ArrayList<ContaBancaria> contas;
+        ArrayList<Operador> operadores = new ArrayList<>();
         SistemaInicial s = new SistemaInicial();
         contas = s.getContas();
+        Operador operatorAtual = new Operador(1, "Usuario Inicial Padrao");
+        operadores.add(operatorAtual);
         int option;
         do {
             mostrarOpcoes();
             option = lerRespostaDoUsuario();
             switch (option) {
                 case 1:
-                    cadastrarNovoOperador();
+                    System.out.print("*******Nome Completo: ");
+                    String nome = in.nextLine();
+                    System.out.print("*******ID: ");
+                    int id = Integer.parseInt(in.nextLine());
+                    boolean temOp = false;
+                    for (Operador op : operadores) {
+                        if (op.getId() == id) {
+                            temOp = true;
+                        }
+                    }
+                    if (temOp == false) {
+                        System.out.println("Novo Operador Cadastrado. XD");
+                        Operador op = new Operador(id, nome);
+                        operadores.add(op);
+                    } else {
+                        System.out.println("****** Ja exite um operador com este Identificador ******");
+                    }
                     break;
                 case 2:
-                    mostrarOperadorAtual();
+                    System.out.print("*******Operador Atual -> " + operatorAtual);
+                    System.out.println();
                     break;
                 case 3:
-                    trocarOperador();
+                    System.out.println("Operadores: ");
+                    for (Operador op : operadores ) {
+                        System.out.println(op);
+                    }
+                    System.out.print("Entre com ID do Operador: ");
+                    int identificador = Integer.parseInt(in.nextLine());
+                    temOp = false;
+                    for (Operador op: operadores) {
+                        if(op.getId() == identificador){
+                            temOp = true;
+                            operatorAtual = op;
+                            System.out.println(operatorAtual.getNomeCompleto() + " esta operando Agora!");
+                        }
+                    }
+                    if (temOp == false){
+                        System.out.println("Operador Invalido");
+                    }
                     break;
                 case 4:
                     criarConta();
@@ -41,7 +77,6 @@ public class App {
                     break;
                 case 10:
                     System.out.println("Encerrando Programa...");
-                    Thread.sleep(3000);
                     break;
                 default:
                     System.out.println("Opção inválida, por favor digite novamente.");
@@ -74,18 +109,6 @@ public class App {
             System.out.println("O programa só aceita números inteiros.");
         }
         return input;
-    }
-
-    public static void cadastrarNovoOperador() {
-        System.out.println("cadastrando novo operador.");
-    }
-
-    public static void mostrarOperadorAtual() {
-        System.out.println("mostrando operador atual.");
-    }
-
-    public static void trocarOperador() {
-        System.out.println("trocando operador");
     }
 
     public static void criarConta() {

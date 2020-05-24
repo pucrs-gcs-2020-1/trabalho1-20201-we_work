@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class AppTestesDeFuncionalidade {
     public static void main(String[] args) {
@@ -26,5 +27,12 @@ public class AppTestesDeFuncionalidade {
         }
         System.out.println(ax);
         System.out.println(String.format("%40s %20s","Saldo Total: ",cont));
+        ArrayList<Operador> opr = new ArrayList<>();
+
+        opr.add(new Operador(1,"Rafael Dias Puhl"));
+
+        for (Operador op:opr ) {
+            System.out.println(op);
+        }
     }
 }
