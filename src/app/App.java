@@ -1,6 +1,9 @@
+package app;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
+import interfaces.*;
 
 public class App {
     public static void main(String[] args) throws InterruptedException, IOException {
