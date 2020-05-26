@@ -12,9 +12,11 @@ public class App {
         Operador operatorAtual = new Operador(1, "Usuario Inicial Padrao");
         operadores.add(operatorAtual);
         int option;
+
         do {
             mostrarOpcoes();
             option = lerRespostaDoUsuario();
+
             switch (option) {
             case 1:
                 System.out.print("*******Nome Completo: ");
@@ -22,12 +24,13 @@ public class App {
                 System.out.print("*******ID: ");
                 int id = Integer.parseInt(in.nextLine());
                 boolean temOp = false;
+
                 for (Operador op : operadores) {
                     if (op.getId() == id) {
                         temOp = true;
                     }
-
                 }
+
                 if (temOp == false) {
                     System.out.println("Novo Operador Cadastrado. XD");
                     Operador op = new Operador(id, nome);
@@ -35,19 +38,25 @@ public class App {
                 } else {
                     System.out.println("****** Ja exite um operador com este Identificador ******");
                 }
+
                 break;
+
             case 2:
                 System.out.print("*******Operador Atual -> " + operatorAtual);
                 System.out.println();
                 break;
+
             case 3:
                 System.out.println("Operadores: ");
+
                 for (Operador op : operadores) {
                     System.out.println(op);
                 }
+
                 System.out.print("Entre com ID do Operador: ");
                 int identificador = Integer.parseInt(in.nextLine());
                 temOp = false;
+
                 for (Operador op : operadores) {
                     if (op.getId() == identificador) {
                         temOp = true;
@@ -55,10 +64,13 @@ public class App {
                         System.out.println(operatorAtual.getNomeCompleto() + " esta operando Agora!");
                     }
                 }
+
                 if (temOp == false) {
                     System.out.println("Operador Invalido");
                 }
+
                 break;
+
             case 4:
                 System.out.println("\nDigite o número da conta:\n");
                 String numConta = "";
@@ -69,12 +81,15 @@ public class App {
                 ContaBancaria count = new ContaBancaria(numConta, nome_conta, 0.0);
                 contas.add(count);
                 break;
+
             case 5:
                 System.out.println("\n\n\n");
                 System.out.println("\tNº das contas cadastradas:");
+
                 for (ContaBancaria c : contas) {
                     System.out.println("\t" + c.getNumeroConta());
                 }
+
                 System.out.println("Digite o numero da conta que deseja selecionar: \n");
                 String nu_conta = getTeclado();
                 System.out.println("......");
@@ -90,24 +105,22 @@ public class App {
                 String menu = getTeclado();
 
                 switch (menu) {
+                    case "1":
+                        adicionarMovimento();
+                        break;
 
-                case "1":
-                    adicionarMovimento();
-                    break;
+                    case "2":
+                        consultarMovimentos();
+                        break;
 
-                case "2":
-                    consultarMovimentos();
-                    break;
-
-                case "3":
-                    transferirFundos();
-                    break;
-                case "4":
-                    emitirRelatorio();
-                    break;
-                case "5":
-                    break;
-
+                    case "3":
+                        transferirFundos();
+                        break;
+                    case "4":
+                        emitirRelatorio();
+                        break;
+                    case "5":
+                        break;
                 }
 
                 break;
@@ -116,10 +129,12 @@ public class App {
                 System.out.println("Encerrando Programa...");
                 System.exit(0);
                 break;
+
             default:
                 System.out.println("Opção inválida, por favor digite novamente.");
                 break;
             }
+
         } while (option != 10);
     }
 
@@ -136,12 +151,14 @@ public class App {
     public static Integer lerRespostaDoUsuario() {
         Scanner in = new Scanner(System.in);
         System.out.print("Digite o número do comando que deseja executar: ");
-        var input = 100;
+        int input = 100;
+
         try {
             input = in.nextInt();
         } catch (NumberFormatException exception) {
             System.out.println("O programa só aceita números inteiros.");
         }
+
         return input;
     }
 
@@ -164,6 +181,7 @@ public class App {
     public static String getTeclado() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String _entrada = in.readLine();
+        
         return _entrada;
     }
 
