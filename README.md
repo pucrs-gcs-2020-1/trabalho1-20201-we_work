@@ -12,3 +12,5 @@ Componentes do time:
 - WENDELL DE LACERDA
 - ARTHUR AMESTRETE ?
 - CAROLINA FRACÃO ?
+
+Link relatório: https://docs.google.com/document/d/10uzE8IVh284Ud57BZGAjJizOYHmMopiN7K09c2sCkUQ/edit?usp=sharing
