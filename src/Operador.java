@@ -1,37 +1,33 @@
 public class Operador {
-   private String nome_completo = "";
+   private String nomeCompleto = "";
    private String iniciais = "";
+   protected int id;
 
-   public Operador(String nome_completo, String iniciais) {
-       this.nome_completo = nome_completo;
-       this.iniciais = iniciais;
-   }
-
-   public Operador(String nome_completo) {
-       this.nome_completo = nome_completo;
-       for (var tmp : nome_completo.split(" ")) {
-           iniciais += tmp.toCharArray()[0];
+   public Operador(int id, String nomeCompleto) {
+       this.id = id;
+       this.nomeCompleto = nomeCompleto;
+       for (var tmp : nomeCompleto.split(" ")) {
+           this.iniciais += tmp.toCharArray()[0];
        }
    }
 
-   public void set_nome(String nome_completo) {
-       this.nome_completo = nome_completo;
+
+   public String getNomeCompleto() {
+       return this.nomeCompleto;
    }
 
-   public void set_iniciais(String iniciais) {
-       this.iniciais = iniciais;
+   public String getIniciais() {
+       return this.iniciais;
    }
 
-   public String get_nome_completo() {
-       return nome_completo;
-   }
+    public int getId() {
+        return this.id;
+    }
 
-   public String get_iniciais() {
-       return iniciais;
-   }
-
-   @Override
+    @Override
    public String toString() {
-       return get_nome_completo() + ", " + get_iniciais();
+       return  "ID: " + getId() +
+               ", Nome Completo: " + getNomeCompleto() +
+               ", Iniciais: " + getIniciais();
    }
 }
