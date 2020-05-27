@@ -1,17 +1,17 @@
 import java.util.Date;
 
 public class ContaBancaria implements Conta {
-    protected int saldo = 0;
+    protected int saldo;
     protected String numero;
     private int idOperador
     private String nome;
     private ArrayList<Movimentacao> movimentacoes;
     private Date dataCriacao;
 
-    public ContaBancaria(String num, String n, double s, int idOperador) {
+    public ContaBancaria(String num, String n, int idOperador) {
         this.numero = num;
         this.nome = n;
-        this.saldo = s;
+        this.saldo = 0;
         this.idOperador = idOperador;
         this.movimentacoes = new ArrayList<Movimentacao>;
         this.dataCriacao = new Date();
