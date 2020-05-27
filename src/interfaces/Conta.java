@@ -1,13 +1,18 @@
 package interfaces;
+import Movimentacao;
 
 public interface Conta {
-    public boolean saque(double valor);
+    public void credito(double valor);
+    
+    public boolean debito(double valor);
 
-    public void deposito(double valor);
+    public int getSaldo();
 
-    public boolean transferencia(ContaBancaria c, double valor);
-
-    public double getSaldo();
+    public String getNome();
 
     public String getNumeroConta();
+
+    public ArrayList<Movimentacao> getMovimentacoesByIdConta(int idConta);
+
+    public void addMovimento(Movimentacao m);
 }
