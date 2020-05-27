@@ -1,5 +1,7 @@
 package interfaces;
-import Movimentacao;
+import entities.Movimentacao;
+
+import java.util.ArrayList;
 
 public interface Conta {
     public void credito(double valor);
@@ -12,7 +14,7 @@ public interface Conta {
 
     public String getNumeroConta();
 
-    public ArrayList<Movimentacao> getMovimentacoesByIdConta(int idConta);
+    public ArrayList<Movimentacao> getMovimentacoes();
 
-    public void addMovimento(Movimentacao m);
+    public Movimentacao addMovimentacao(Movimentacao m);
 }

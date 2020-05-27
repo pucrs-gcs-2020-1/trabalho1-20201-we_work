@@ -1,3 +1,5 @@
+package entities;
+
 import java.util.Date;
 
 public class Movimentacao {
@@ -7,7 +9,7 @@ public class Movimentacao {
   	private String descricao;
   	private int valorMonetario;
 
-  	public Movimentacao(int o, int idMovimentacao, String d, double v) {
+  	public Movimentacao(int o, int idMovimentacao, String d, int v) {
   		this.idMovimentacao = idMovimentacao;
 		this.data = new Date();
   		this.idOperador = o;
@@ -38,5 +40,6 @@ public class Movimentacao {
   	@Override
   	public String toString() {
 		  // TODO
+		return "";
   	}
 }

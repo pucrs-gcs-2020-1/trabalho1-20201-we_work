@@ -1,9 +1,14 @@
-import java.lang.Math.*;
+package entities;
+
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Operador {
     protected int idOperador;
     private String nome;
     private String iniciais;
+    Random rd = new Random();
 
     public Operador(int id, String nome) {
         this.idOperador = id;
@@ -27,20 +32,20 @@ public class Operador {
         return this.idOperador;
     }
 
-    public void transferencia(ContaBancaria d, ContaBancaria c, int v, ArrayList<Movimento> m) {
-        if (d.debito(valor)) {
+    public void transferencia(ContaBancaria d, ContaBancaria c, int v, ArrayList<Movimentacao> m) {
+        if (d.debito(v)) {
 
-            c.credito(valor);
+            c.credito(v);
 
-            String s = "Transferencia realizada de " + 
-                d.getNome() + " para " + 
-                c.getNome() + ". Operador: " +
-                this.nome + ", data: " +
-                m.getDataMovimentacao();
+            String s = "Transferencia realizada de " +
+                    d.getNome() + " para " +
+                    c.getNome() + ". Operador: " +
+                    this.nome + ", data: " +
+                    new Date();
 
-            m.add(d.addMovimento(new Movimento(this.idOperador, Math.random().nextInt(30000), s, v)));
-            m.add(c.addMovimento(new Movimento(this.idOperador, Math.random().nextInt(30000), s, v)));
-            
+            m.add(d.addMovimentacao(new Movimentacao(this.idOperador, new Random().nextInt(3000), s, v)));
+            m.add(c.addMovimentacao(new Movimentacao(this.idOperador, new Random().nextInt(3000), s, v)));
+
             System.out.println(s);
         }
 
@@ -50,5 +55,6 @@ public class Operador {
     @Override
     public String toString() {
         // TODO
+        return "";
     }
 }

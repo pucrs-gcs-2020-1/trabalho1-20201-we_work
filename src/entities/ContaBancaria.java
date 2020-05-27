@@ -1,9 +1,14 @@
+package entities;
+
+import interfaces.Conta;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ContaBancaria implements Conta {
     protected int saldo;
     protected String numero;
-    private int idOperador
+    private int idOperador;
     private String nome;
     private ArrayList<Movimentacao> movimentacoes;
     private Date dataCriacao;
@@ -13,7 +18,7 @@ public class ContaBancaria implements Conta {
         this.nome = n;
         this.saldo = 0;
         this.idOperador = idOperador;
-        this.movimentacoes = new ArrayList<Movimentacao>;
+        this.movimentacoes = new ArrayList<Movimentacao>();
         this.dataCriacao = new Date();
     }
 
@@ -26,10 +31,8 @@ public class ContaBancaria implements Conta {
     public boolean debito(double valor) {
         if (this.saldo > 0 && this.saldo > valor) {
             this.saldo -= valor;
-
             return true;
         }
-
         return false;
     }
 
@@ -47,20 +50,22 @@ public class ContaBancaria implements Conta {
     public String getNumeroConta() {
         return this.numero;
     }
-    
+
     @Override
     public ArrayList<Movimentacao> getMovimentacoes() {
         return this.movimentacoes;
-    };
-    
+    }
+
     @Override
-    public void addMovimentacao(Movimentacao m) {
+    public Movimentacao addMovimentacao(Movimentacao m) {
         this.movimentacoes.add(m);
-    };
+        return m;
+    }
 
     @Override
     public String toString() {
         // TODO
+        return "";
     }
 }
 

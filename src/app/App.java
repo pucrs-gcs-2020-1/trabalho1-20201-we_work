@@ -1,14 +1,17 @@
 package app;
 
+import entities.Operador;
+import interfaces.Conta;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
-import interfaces.*;
+
 
 public class App {
     public static void main(String[] args) throws InterruptedException, IOException {
         Scanner in = new Scanner(System.in);
-        ArrayList<ContaBancaria> contas = new ArrayList<>();
+        ArrayList<Conta> contas = new ArrayList<>();
         ArrayList<Operador> operadores = new ArrayList<>();
         SistemaInicial s = new SistemaInicial();
         contas = s.getContas();
@@ -184,7 +187,7 @@ public class App {
     public static String getTeclado() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String _entrada = in.readLine();
-        
+
         return _entrada;
     }
 
