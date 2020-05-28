@@ -1,54 +1,95 @@
 package app;
 
+import entities.Operador;
 import java.util.Scanner;
+import interfaces.Conta;
+import java.util.ArrayList;
 
 public class Menu {
-    public void run() {
-        while (menu() != 10) ;
+
+    static ArrayList<Operador> operadores = new ArrayList<>();
+    static Scanner in = new Scanner(System.in);
+    static Operador operatorAtual = new Operador(1, "Usuario Inicial Padrao");
+    operadores.add(operatorAtual);
+
+    ArrayList<Conta> contas;
+    SistemaInicial s;
+
+    public Menu() {
+        this.s = new SistemaInicial();
+        this.contas = s.getContas();
+        contas = s.getContas();
+
     }
 
-    private static int menu() {
-        mostrar_opcoes();
-        var option = ler_resposta_do_usuario();
+    public static void dashBoard(int option) {
         switch (option) {
             case 1:
-                cadastrar_novo_operador();
+                cadastrarNovoOperador();
                 break;
             case 2:
-                mostrar_operador_atual();
+                mostrarOperadorAtual();
                 break;
             case 3:
-                trocar_operador();
+                trocarOperador();
                 break;
             case 4:
-                criar_conta();
+                criarConta();
                 break;
             case 5:
-                selecionar_conta();
+                System.out.println("\n\n\n");
+                System.out.println("\tNº das contas cadastradas:");
+
+                for (ContaBancaria c : contas) {
+                    System.out.println("\t" + c.getNumeroConta());
+                }
+
+                System.out.println("Digite o numero da conta que deseja selecionar: \n");
+                String nu_conta = getTeclado();
+                System.out.println("......");
+                System.out.println("Conta selecionada");
+                System.out.println("\n\n");
+
+                System.out.println("1 -> Adicionar movimento à conta selecionada");
+                System.out.println("2 -> Consultar movimentos da conta selecionada.");
+                System.out.println("3 -> Transferir fundos de uma conta para a outra.");
+                System.out.println("4 -> Emitir um relatório geral.");
+                System.out.println("5 -> Retornar ao menu principal");
+
+                String menu = getTeclado();
+
+                switch (menu) {
+                    case "1":
+                        adicionarMovimento();
+                        break;
+
+                    case "2":
+                        consultarMovimentos();
+                        break;
+
+                    case "3":
+                        transferirFundos();
+                        break;
+                    case "4":
+                        emitirRelatorio();
+                        break;
+                    case "5":
+                        break;
+                }
                 break;
             case 6:
-                adicionar_movimento();
-                break;
-            case 7:
-                consultar_movimentos();
-                break;
-            case 8:
-                transferir_fundos();
-                break;
-            case 9:
-                emitir_relatorio();
-                break;
-            case 10:
                 System.out.println("Encerrando Programa...");
+                System.exit(0);
                 break;
+
             default:
                 System.out.println("Opção inválida, por favor digite novamente.");
                 break;
         }
-        return option;
+        mostrarOpcoes();
     }
 
-    private static void mostrar_opcoes() {
+    public static void mostrarOpcoes() {
         System.out.println("Greetings!");
         System.out.println("1 -> Cadastrar um operador.");
         System.out.println("2 -> Mostrar operador atual.");
@@ -57,56 +98,103 @@ public class Menu {
         System.out.println("5 -> Selecionar uma conta.");
         System.out.println("6 -> Adicionar movimento à conta selecionada");
         System.out.println("7 -> Consultar movimentos da conta selecionada.");
-        System.out.println("8 -> Transferir fundos de uma conta para a outra.");
+        System.out.println("8 -> Transferir fundos.");
         System.out.println("9 -> Emitir um relatório geral.");
         System.out.println("10 -> Terminar programa.");
     }
 
-    private static Integer ler_resposta_do_usuario() {
-        Scanner in = new Scanner(System.in);
+    public static int lerRespostaDoUsuario() {
         System.out.print("Digite o número do comando que deseja executar: ");
-        var input = 100;
         try {
-            input = in.nextInt();
+            return in.nextInt();
         } catch (NumberFormatException exception) {
             System.out.println("O programa só aceita números inteiros.");
         }
-        return input;
+        return 10;
     }
 
-    private static void cadastrar_novo_operador() {
+    private static void cadastrarNovoOperador() {
+        System.out.print("*******Nome Completo: ");
+        String nome = in.nextLine();
+        System.out.print("*******ID: ");
+        int id = lerRespostaDoUsuario();
+        boolean temOp = false;
+
+        for (Operador op : operadores) {
+            if (op.getIdOperador() == id) {
+                temOp = true;
+            }
+        }
+
+        if (!temOp) {
+            System.out.println("Novo Operador Cadastrado. XD");
+            Operador op = new Operador(id, nome);
+            operadores.add(op);
+        } else {
+            System.out.println("****** Ja exite um operador com este Identificador ******");
+        }
         System.out.println("cadastrando novo operador.");
     }
 
-    private static void mostrar_operador_atual() {
-        System.out.println("mostrando operador atual.");
+    private static void mostrarOperadorAtual() {
+        System.out.print("*******Operador Atual -> " + operatorAtual);
+        System.out.println();
     }
 
-    private static void trocar_operador() {
+    private static void trocarOperador() {
+        System.out.println("Operadores: ");
+
+        for (Operador op : operadores) {
+            System.out.println(op);
+        }
+
+        System.out.print("Entre com ID do Operador: ");
+        int identificador = Integer.parseInt(in.nextLine());
+        temOp = false;
+
+        for (Operador op : operadores) {
+            if (op.getId() == identificador) {
+                temOp = true;
+                operatorAtual = op;
+                System.out.println(operatorAtual.getNomeCompleto() + " esta operando Agora!");
+            }
+        }
+
+        if (temOp == false) {
+            System.out.println("Operador Invalido");
+        }
         System.out.println("trocando operador");
     }
 
-    private static void criar_conta() {
+    private static void criarConta() {
+        System.out.println("\nDigite o número da conta:\n");
+        String numConta = "";
+        numConta = getTeclado();
+        System.out.println("Agora digite o nome do proprietário da conta: \n");
+        String nome_conta = "";
+        nome_conta = getTeclado();
+        ContaBancaria count = new ContaBancaria(numConta, nome_conta, 0.0);
+        contas.add(count);
         System.out.println("criando conta.");
     }
 
-    private static void selecionar_conta() {
+    private static void selecionarConta() {
         System.out.println("selecionando conta.");
     }
 
-    private static void adicionar_movimento() {
+    private static void adicionarMovimento() {
         System.out.println("adicionando novo movimento.");
     }
 
-    private static void consultar_movimentos() {
+    private static void consultarMovimentos() {
         System.out.println("consultando movimentos.");
     }
 
-    private static void transferir_fundos() {
+    private static void trasferirFundos() {
         System.out.println("transferindo fundos.");
     }
 
-    private static void emitir_relatorio() {
+    private static void emitirRelatorio() {
         System.out.println("emitindo relatórios.");
     }
 }

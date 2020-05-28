@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Operador {
-    protected int idOperador;
+    private int idOperador;
     private String nome;
     private String iniciais;
     Random rd = new Random();
