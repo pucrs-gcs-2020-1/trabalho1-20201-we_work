@@ -6,20 +6,19 @@ import interfaces.Conta;
 import java.util.ArrayList;
 
 public class Menu {
-
-    static ArrayList<Operador> operadores = new ArrayList<>();
     static Scanner in = new Scanner(System.in);
-    static Operador operatorAtual = new Operador(1, "Usuario Inicial Padrao");
-    operadores.add(operatorAtual);
-
+    static ArrayList<Operador> operadores;
+    
+    Operador operatorAtual;
+    SistemaInicial sistemaInicial;
     ArrayList<Conta> contas;
-    SistemaInicial s;
 
     public Menu() {
-        this.s = new SistemaInicial();
-        this.contas = s.getContas();
-        contas = s.getContas();
-
+        this.sistemaInicial = new SistemaInicial();
+        this.contas = sistemaInicial.getContas();
+        this.operadores = new ArrayList<>();
+        this.operatorAtual = new Operador(1, "Usuario Inicial Padrao");
+        this.operadores.add(this.operatorAtual);
     }
 
     public static void dashBoard(int option) {
@@ -137,7 +136,7 @@ public class Menu {
     }
 
     private static void mostrarOperadorAtual() {
-        System.out.print("*******Operador Atual -> " + operatorAtual);
+        System.out.print("*******Operador Atual -> " + this.operatorAtual);
         System.out.println();
     }
 
