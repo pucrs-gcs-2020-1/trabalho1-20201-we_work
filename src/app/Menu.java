@@ -1,5 +1,6 @@
 package app;
 
+import entities.ContaBancaria;
 import entities.Operador;
 import java.util.Scanner;
 import interfaces.Conta;
@@ -8,17 +9,17 @@ import java.util.ArrayList;
 public class Menu {
     static Scanner in = new Scanner(System.in);
     static ArrayList<Operador> operadores;
-    
-    Operador operatorAtual;
+    static Operador operatorAtual;
+    static ArrayList<Conta> contas;
+
     SistemaInicial sistemaInicial;
-    ArrayList<Conta> contas;
 
     public Menu() {
         this.sistemaInicial = new SistemaInicial();
         this.contas = sistemaInicial.getContas();
-        this.operadores = new ArrayList<>();
+        operadores = new ArrayList<>();
         this.operatorAtual = new Operador(1, "Usuario Inicial Padrao");
-        this.operadores.add(this.operatorAtual);
+        operadores.add(this.operatorAtual);
     }
 
     public static void dashBoard(int option) {
@@ -39,12 +40,12 @@ public class Menu {
                 System.out.println("\n\n\n");
                 System.out.println("\tNº das contas cadastradas:");
 
-                for (ContaBancaria c : contas) {
+                for (Conta c : contas) {
                     System.out.println("\t" + c.getNumeroConta());
                 }
 
                 System.out.println("Digite o numero da conta que deseja selecionar: \n");
-                String nu_conta = getTeclado();
+                String numeroConta = in.nextLine();
                 System.out.println("......");
                 System.out.println("Conta selecionada");
                 System.out.println("\n\n");
@@ -55,24 +56,22 @@ public class Menu {
                 System.out.println("4 -> Emitir um relatório geral.");
                 System.out.println("5 -> Retornar ao menu principal");
 
-                String menu = getTeclado();
+                int escolha = in.nextInt();
 
-                switch (menu) {
-                    case "1":
+                switch (escolha) {
+                    case 1:
                         adicionarMovimento();
                         break;
-
-                    case "2":
+                    case 2:
                         consultarMovimentos();
                         break;
-
-                    case "3":
-                        transferirFundos();
+                    case 3:
+                        operatorAtual.transferencia();
                         break;
-                    case "4":
+                    case 4:
                         emitirRelatorio();
                         break;
-                    case "5":
+                    case 5:
                         break;
                 }
                 break;
@@ -136,11 +135,11 @@ public class Menu {
     }
 
     private static void mostrarOperadorAtual() {
-        System.out.print("*******Operador Atual -> " + this.operatorAtual);
+        System.out.print("*******Operador Atual -> " + operatorAtual);
         System.out.println();
     }
 
-    private static void trocarOperador() {
+    public static void trocarOperador() {
         System.out.println("Operadores: ");
 
         for (Operador op : operadores) {
@@ -148,18 +147,18 @@ public class Menu {
         }
 
         System.out.print("Entre com ID do Operador: ");
-        int identificador = Integer.parseInt(in.nextLine());
-        temOp = false;
+        int identificador = in.nextInt();
+        boolean temOp = false;
 
         for (Operador op : operadores) {
-            if (op.getId() == identificador) {
+            if (op.getIdOperador() == identificador) {
                 temOp = true;
                 operatorAtual = op;
-                System.out.println(operatorAtual.getNomeCompleto() + " esta operando Agora!");
+                System.out.println(operatorAtual.getNome() + " esta operando Agora!");
             }
         }
 
-        if (temOp == false) {
+        if (!temOp) {
             System.out.println("Operador Invalido");
         }
         System.out.println("trocando operador");
@@ -167,14 +166,12 @@ public class Menu {
 
     private static void criarConta() {
         System.out.println("\nDigite o número da conta:\n");
-        String numConta = "";
-        numConta = getTeclado();
+        String numConta = in.nextLine();
         System.out.println("Agora digite o nome do proprietário da conta: \n");
-        String nome_conta = "";
-        nome_conta = getTeclado();
-        ContaBancaria count = new ContaBancaria(numConta, nome_conta, 0.0);
-        contas.add(count);
-        System.out.println("criando conta.");
+        String nomeConta = in.nextLine();
+        Conta conta = new ContaBancaria(numConta, nomeConta, operatorAtual.getIdOperador());
+        contas.add(conta);
+        System.out.println("Conta Criada. XD");
     }
 
     private static void selecionarConta() {
