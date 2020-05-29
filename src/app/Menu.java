@@ -161,8 +161,21 @@ public class Menu {
                 adicionarMovimento();
                 break;
             case 2:
-                consultarMovimentos();
+                System.out.println("Informe o número da conta desejada: \n");
+                String numConta = in.nextLine();
+                ContaBancaria contaOrigem = null;
+                for (Conta c : contas) {
+                    if (c.getNumeroConta().equals(numConta)) {
+                        contaOrigem = (ContaBancaria) c;
+                        System.out.println("Conta existente");
+                    } else {
+                        System.out.println("Conta não encontrada");
+                        break;
+                    }
+                }
+                consultarMovimentos(contaOrigem);
                 break;
+
             case 3:
                 System.out.println("Informe o número da conta origem:\n");
                 String num_conta_origem = in.nextLine();
@@ -210,7 +223,11 @@ public class Menu {
 
     private static void adicionarMovimento() { System.out.println("adicionando novo movimento."); }
 
-    private static void consultarMovimentos() { System.out.println("consultando movimentos."); }
+    private static void consultarMovimentos(ContaBancaria contaBancaria) {
+        for(Movimentacao m: contaBancaria.getMovimentacoes()){
+            System.out.println(m+"\n");
+        }
+    }
 
     private static void trasferirFundos() {
         System.out.println("transferindo fundos.");

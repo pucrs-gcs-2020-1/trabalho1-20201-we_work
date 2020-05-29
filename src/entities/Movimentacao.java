@@ -1,7 +1,7 @@
 package entities;
 import java.util.Date;
 
-public class Movimentacao {
+public class  Movimentacao {
 	private int idMovimentacao;
   	private Date data;
   	private int idOperador;
