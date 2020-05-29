@@ -36,6 +36,12 @@ public class  Movimentacao {
   		return this.valorMonetario;
   	}
 
+  	private String montaValor(int v){
+  		int centavos = v % 100;
+  		int real = v / 100;
+  		return "R$" + real + "," + centavos;
+	}
+
   	@Override
   	public String toString() {
 		return "\nData: " + this.data +
