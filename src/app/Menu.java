@@ -158,7 +158,14 @@ public class Menu {
 
         switch (escolha) {
             case 1:
-                adicionarMovimento();
+                for(Conta c:contas)
+                {
+                    if(c.getNumeroConta()==numeroConta)
+                    {
+                        adicionarMovimento(c);
+                    }
+                }
+
                 break;
             case 2:
                 System.out.println("Informe o número da conta desejada: \n");
@@ -221,11 +228,25 @@ public class Menu {
         }
     }
 
-    private static void adicionarMovimento() { System.out.println("adicionando novo movimento."); }
+    private static void adicionarMovimento(Conta conta) {
+        System.out.println("adicionando novo movimento...");
+        System.out.println("Imforme operadora: ");
+        int op=in.nextInt();
+        System.out.println("ID da movimentação: ");
+        int mv=in.nextInt();
+        System.out.println("Descrição da movimentação: ");
+        String descricao=in.nextLine();
+        System.out.println("Valor da movimentação: ");
+        int v=in.nextInt();
+        Movimentacao move=new Movimentacao(op,mv,descricao,v);
+        conta.addMovimentacao(move);
+        System.out.println("Movimentação concluida com sucesso");
+
+    }
 
     private static void consultarMovimentos(ContaBancaria contaBancaria) {
         for(Movimentacao m: contaBancaria.getMovimentacoes()){
-            System.out.println(m+"\n");
+            System.out.println(m.getData()+"\n"+m.getOperador()+"\n"+m.getDescricao()+"\n"+m.getValorMonetario());
         }
     }
 
