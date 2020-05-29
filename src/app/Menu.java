@@ -25,102 +25,30 @@ public class Menu {
 
     public static void dashBoard(int option) {
         switch (option) {
-        case 1:
-            cadastrarNovoOperador();
-            break;
-        case 2:
-            mostrarOperadorAtual();
-            break;
-        case 3:
-            trocarOperador();
-            break;
-        case 4:
-            criarConta();
-            break;
-        case 5:
-            System.out.println("\n\n\n");
-            System.out.println("\tNº das contas cadastradas:");
-
-            for (Conta c : contas) {
-                System.out.println("\t" + c.getNumeroConta());
-            }
-
-            System.out.println("Digite o numero da conta que deseja selecionar: \n");
-            String numeroConta = in.nextLine();
-            System.out.println("......");
-            System.out.println("Conta selecionada");
-            System.out.println("\n\n");
-
-            System.out.println("1 -> Adicionar movimento à conta selecionada");
-            System.out.println("2 -> Consultar movimentos da conta selecionada.");
-            System.out.println("3 -> Transferir fundos de uma conta para a outra.");
-            System.out.println("4 -> Emitir um relatório geral.");
-            System.out.println("5 -> Retornar ao menu principal");
-
-            int escolha = in.nextInt();
-
-            switch (escolha) {
             case 1:
-                adicionarMovimento();
+                cadastrarNovoOperador();
                 break;
             case 2:
-                consultarMovimentos();
+                System.out.println(mostrarOperadorAtual());
                 break;
             case 3:
-                System.out.println("Informe o número da conta origem:\n");
-                String num_conta_origem = in.nextLine();
-                ContaBancaria cOrigem = null;
-                for (Conta c : contas) {
-                    if (c.getNumeroConta().equals(num_conta_origem)) {
-                        cOrigem = (ContaBancaria) c;
-                        System.out.println("Conta Origem ok...");
-                    } else {
-                        System.out.println("Conta origem não encontrada");
-                        break;
-                    }
-                }
-
-                System.out.println("Informe o numero da conta destino:\n");
-                String num_conta_destino = in.nextLine();
-                ContaBancaria cDestino = null;
-                for (Conta c : contas) {
-                    if (c.getNumeroConta().equals(num_conta_destino)) {
-                        cDestino = (ContaBancaria) c;
-                        System.out.println("Conta destino ok...");
-                    } else {
-                        System.out.println("Conta destino não encontrada");
-                        break;
-                    }
-                }
-                System.out.println("Informe o valor desejado para transferência: \n");
-                int valor = Integer.parseInt(in.nextLine());
-
-                ArrayList<Movimentacao> m = new ArrayList<>();
-                operatorAtual.transferencia(cOrigem, cDestino, valor, m);
-
-                // operatorAtual.transferencia();
+                trocarOperador();
                 break;
             case 4:
-                emitirRelatorio();
+                criarConta();
                 break;
             case 5:
-                break;
-            }
-            break;
-        case 6:
-            System.out.println("Encerrando Programa...");
-            System.exit(0);
-            break;
-
-        default:
-            System.out.println("Opção inválida, por favor digite novamente.");
-            break;
+                selecionarConta();
+            case 6:
+                System.out.println("finalizando programa...");
+                System.exit(0);
         }
         mostrarOpcoes();
     }
 
     public static void mostrarOpcoes() {
         System.out.println("Greetings!");
+//        System.out.println(contas.get(0));
         System.out.println("1 -> Cadastrar um operador.");
         System.out.println("2 -> Mostrar operador atual.");
         System.out.println("3 -> Trocar de operador.");
@@ -166,9 +94,8 @@ public class Menu {
         System.out.println("cadastrando novo operador.");
     }
 
-    private static void mostrarOperadorAtual() {
-        System.out.print("*******Operador Atual -> " + operatorAtual);
-        System.out.println();
+    private static String mostrarOperadorAtual() {
+        return "*******Operador Atual -> " + operatorAtual;
     }
 
     public static void trocarOperador() {
@@ -207,22 +134,100 @@ public class Menu {
     }
 
     private static void selecionarConta() {
-        System.out.println("selecionando conta.");
+        System.out.println("\n\n\n");
+        System.out.println("\tNº das contas cadastradas:");
+        int cont=0;
+        for (int i=1;i<contas.size();i++) {
+            cont++;
+        }
+        System.out.println(cont);
+
+        System.out.println("Digite o numero da conta que deseja selecionar: \n");
+        String numeroConta = in.nextLine();
+        System.out.println("......");
+        System.out.println("Conta selecionada");
+        System.out.println("\n\n");
+
+        System.out.println("1 -> Adicionar movimento à conta selecionada");
+        System.out.println("2 -> Consultar movimentos da conta selecionada.");
+        System.out.println("3 -> Transferir fundos de uma conta para a outra.");
+        System.out.println("4 -> Emitir um relatório geral.");
+        System.out.println("5 -> Retornar ao menu principal");
+
+        int escolha = in.nextInt();
+
+        switch (escolha) {
+            case 1:
+                adicionarMovimento();
+                break;
+            case 2:
+                consultarMovimentos();
+                break;
+            case 3:
+                System.out.println("Informe o número da conta origem:\n");
+                String num_conta_origem = in.nextLine();
+                ContaBancaria cOrigem = null;
+                for (Conta c : contas) {
+                    if (c.getNumeroConta().equals(num_conta_origem)) {
+                        cOrigem = (ContaBancaria) c;
+                        System.out.println("Conta Origem ok...");
+                    } else {
+                        System.out.println("Conta origem não encontrada");
+                        break;
+                    }
+                }
+
+                System.out.println("Informe o numero da conta destino:\n");
+                String num_conta_destino = in.nextLine();
+                ContaBancaria cDestino = null;
+                for (Conta c : contas) {
+                    if (c.getNumeroConta().equals(num_conta_destino)) {
+                        cDestino = (ContaBancaria) c;
+                        System.out.println("Conta destino ok...");
+                    } else {
+                        System.out.println("Conta destino não encontrada");
+                        break;
+                    }
+                }
+                System.out.println("Informe o valor desejado para transferência: \n");
+                int valor = Integer.parseInt(in.nextLine());
+
+                ArrayList<Movimentacao> m = new ArrayList<>();
+                operatorAtual.transferencia(cOrigem, cDestino, valor, m);
+
+                // operatorAtual.transferencia();
+                break;
+            case 4:
+                for (Conta c:contas) {
+                    if(c.getNumeroConta()==numeroConta)
+                    emitirRelatorio(c);
+                }
+                break;
+            case 5:
+                break;
+        }
     }
 
-    private static void adicionarMovimento() {
-        System.out.println("adicionando novo movimento.");
-    }
+    private static void adicionarMovimento() { System.out.println("adicionando novo movimento."); }
 
-    private static void consultarMovimentos() {
-        System.out.println("consultando movimentos.");
-    }
+    private static void consultarMovimentos() { System.out.println("consultando movimentos."); }
 
     private static void trasferirFundos() {
         System.out.println("transferindo fundos.");
     }
 
-    private static void emitirRelatorio() {
+    private static void emitirRelatorio(Conta conta) {
         System.out.println("emitindo relatórios.");
+        double total=0;
+        System.out.println("Conta "+conta.getNumeroConta()+", criada por "+conta.getNome()+"("+ mostrarOperadorAtual()+")");
+        System.out.println("Data     "+"Operador     "+"nroDoc     "+"Descricao     "+"Valor");
+
+        for(Movimentacao m:conta.getMovimentacoes())
+        {
+            System.out.println(m.getData()+"     "+m.getOperador()+"       "+m.getDescricao()+"     "+m.getValorMonetario());
+            total=total+m.getValorMonetario();
+        }
+        System.out.println("Saldo atual: "+total);
+
     }
 }

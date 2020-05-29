@@ -9,6 +9,9 @@ public class SistemaInicial {
     private ArrayList<Conta> contas;
 
     public SistemaInicial() {
+    }
+
+    public void teste(){
         this.contas = new ArrayList<>();
         Conta c1 = new ContaBancaria("789456", "Mick Jagger",200);
         Conta c2 = new ContaBancaria("321539", "Maik Tyson", 5000);
