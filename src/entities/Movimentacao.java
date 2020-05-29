@@ -4,14 +4,14 @@ import java.util.Date;
 public class  Movimentacao {
 	private int idMovimentacao;
   	private Date data;
-  	private int idOperador;
+  	private String iniciaisOperador;
   	private String descricao;
   	private int valorMonetario;
 
-  	public Movimentacao(int o, int idMovimentacao, String d, int v) {
+  	public Movimentacao(String o, int idMovimentacao, String d, int v) {
   		this.idMovimentacao = idMovimentacao;
 		this.data = new Date();
-  		this.idOperador = o;
+  		this.iniciaisOperador = o;
   		this.descricao = d;
   		this.valorMonetario = v;
   	}
@@ -24,8 +24,8 @@ public class  Movimentacao {
 		return this.data;
 	}
 
-  	public int getOperador() {
-  		return this.idOperador;
+  	public String getOperador() {
+  		return this.iniciaisOperador;
   	}
 
   	public String getDescricao() {
@@ -38,7 +38,10 @@ public class  Movimentacao {
 
   	@Override
   	public String toString() {
-		  // TODO
-		return "";
+		return "\nData: " + this.data +
+				", Inciais Operador: " + this.iniciaisOperador +
+				", Id Movimentacao: " + this.idMovimentacao +
+				", Descricao: " + this.descricao +
+				", Valor: " + montaValor(this.valorMonetario);
   	}
 }

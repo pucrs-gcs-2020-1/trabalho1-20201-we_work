@@ -23,7 +23,7 @@ public class Menu {
         operadores.add(this.operatorAtual);
     }
 
-    public static void dashBoard(int option) {
+    public void dashBoard(int option) {
         switch (option) {
             case 1:
                 cadastrarNovoOperador();
@@ -40,7 +40,7 @@ public class Menu {
             case 5:
                 selecionarConta();
             case 6:
-                System.out.println("finalizando programa...");
+                System.out.println("Finalizando o Programa...");
                 System.exit(0);
         }
         mostrarOpcoes();
@@ -95,7 +95,7 @@ public class Menu {
     }
 
     private static String mostrarOperadorAtual() {
-        return "*******Operador Atual -> " + operatorAtual;
+        return "Operador Atual - > " + operatorAtual;
     }
 
     public static void trocarOperador() {
@@ -183,11 +183,11 @@ public class Menu {
 
             case 3:
                 System.out.println("Informe o número da conta origem:\n");
-                String num_conta_origem = in.nextLine();
-                ContaBancaria cOrigem = null;
+                String numContaOrigem = in.nextLine();
+                Conta cOrigem = null;
                 for (Conta c : contas) {
-                    if (c.getNumeroConta().equals(num_conta_origem)) {
-                        cOrigem = (ContaBancaria) c;
+                    if (c.getNumeroConta().equals(numContaOrigem)) {
+                        cOrigem = (Conta) c;
                         System.out.println("Conta Origem ok...");
                     } else {
                         System.out.println("Conta origem não encontrada");
@@ -196,10 +196,10 @@ public class Menu {
                 }
 
                 System.out.println("Informe o numero da conta destino:\n");
-                String num_conta_destino = in.nextLine();
+                String numContaDestino = in.nextLine();
                 ContaBancaria cDestino = null;
                 for (Conta c : contas) {
-                    if (c.getNumeroConta().equals(num_conta_destino)) {
+                    if (c.getNumeroConta().equals(numContaDestino)) {
                         cDestino = (ContaBancaria) c;
                         System.out.println("Conta destino ok...");
                     } else {
@@ -210,8 +210,7 @@ public class Menu {
                 System.out.println("Informe o valor desejado para transferência: \n");
                 int valor = Integer.parseInt(in.nextLine());
 
-                ArrayList<Movimentacao> m = new ArrayList<>();
-                operatorAtual.transferencia(cOrigem, cDestino, valor, m);
+                operatorAtual.transferencia(cOrigem, cDestino, valor);
 
                 // operatorAtual.transferencia();
                 break;
@@ -227,16 +226,17 @@ public class Menu {
     }
 
     private static void adicionarMovimento(Conta conta) {
+        //TODO Rever Receber Duas Contas Como Parametro
         System.out.println("adicionando novo movimento...");
-        System.out.println("Imforme operadora: ");
-        int op=in.nextInt();
+        System.out.println("Informe operadora: ");
+        String op=in.nextLine();
         System.out.println("ID da movimentação: ");
         int mv=in.nextInt();
         System.out.println("Descrição da movimentação: ");
-        String descricao=in.nextLine();
+        String descricao = in.nextLine();
         System.out.println("Valor da movimentação: ");
         int v=in.nextInt();
-        Movimentacao move=new Movimentacao(op,mv,descricao,v);
+        Movimentacao move = new Movimentacao(op,mv,descricao,v);
         conta.addMovimentacao(move);
         System.out.println("Movimentação concluida com sucesso");
 
@@ -255,15 +255,15 @@ public class Menu {
     private static void emitirRelatorio(Conta conta) {
         System.out.println("emitindo relatórios.");
         double total=0;
-        System.out.println("Conta "+conta.getNumeroConta()+", criada por "+conta.getNome()+"("+ mostrarOperadorAtual()+")");
-        System.out.println("Data     "+"Operador     "+"nroDoc     "+"Descricao     "+"Valor");
+        System.out.println("Conta " + conta.getNumeroConta() + ", criada por " + conta.getNome() + "(" + mostrarOperadorAtual() + ")");
+        System.out.println("Data     " + ", Operador     " + ", nroDoc     " + ", Descricao     " + "Valor");
 
         for(Movimentacao m:conta.getMovimentacoes())
         {
-            System.out.println(m.getData()+"     "+m.getOperador()+"       "+m.getDescricao()+"     "+m.getValorMonetario());
-            total=total+m.getValorMonetario();
+            System.out.println(m.getData() + "     " + m.getOperador() + "       " + m.getDescricao() + "     " + m.getValorMonetario());
+            total = total + m.getValorMonetario();
         }
-        System.out.println("Saldo atual: "+total);
+        System.out.println("Saldo atual: " + total);
 
     }
 }

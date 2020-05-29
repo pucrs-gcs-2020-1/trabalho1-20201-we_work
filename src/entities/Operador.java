@@ -1,8 +1,10 @@
 package entities;
 
+import interfaces.Conta;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Date;
+
 
 public class Operador {
     private int idOperador;
@@ -32,7 +34,7 @@ public class Operador {
         return this.idOperador;
     }
 
-    public void transferencia(ContaBancaria d, ContaBancaria c, int v, ArrayList<Movimentacao> m) {
+    public void transferencia(Conta d, Conta c, int v) {
         if (d.debito(v)) {
 
             c.credito(v);
@@ -43,8 +45,8 @@ public class Operador {
                     this.nome + ", data: " +
                     new Date();
 
-            m.add(d.addMovimentacao(new Movimentacao(this.idOperador, new Random().nextInt(3000), s, v)));
-            m.add(c.addMovimentacao(new Movimentacao(this.idOperador, new Random().nextInt(3000), s, v)));
+            d.addMovimentacao(new Movimentacao(this.idOperador, new Random().nextInt(3000), s, v));
+            c.addMovimentacao(new Movimentacao(this.idOperador, new Random().nextInt(3000), s, v));
 
             System.out.println(s);
         }
@@ -54,7 +56,6 @@ public class Operador {
 
     @Override
     public String toString() {
-        // TODO
-        return "";
+        return "\nNome: " + getNome() + ", ID: " + getIdOperador();
     }
 }
