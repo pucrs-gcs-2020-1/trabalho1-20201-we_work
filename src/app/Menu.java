@@ -168,11 +168,9 @@ public class Menu {
 
                 break;
             case 2:
-                System.out.println("Informe o número da conta desejada: \n");
-                String numConta = in.nextLine();
                 ContaBancaria contaOrigem = null;
                 for (Conta c : contas) {
-                    if (c.getNumeroConta().equals(numConta)) {
+                    if (c.getNumeroConta().equals(numeroConta)) {
                         contaOrigem = (ContaBancaria) c;
                         System.out.println("Conta existente");
                     } else {
