@@ -20,9 +20,9 @@ public interface Conta {
 
     public Movimentacao addMovimentacao(Movimentacao m);
 
-    public void consultarMovimentacoes(Operador o);
+    public void consultarMovimentacoes();
 
-    public void emitirRelatorio(Operador o);
+    public void emitirRelatorio(ArrayList<Operador> operadores);
 
     public void consultarMovimentacoesPorDespesaOuReceita(int s);
 }

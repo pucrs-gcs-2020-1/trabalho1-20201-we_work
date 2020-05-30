@@ -63,7 +63,7 @@ public class ContaBancaria implements Conta {
     }
 
     @Override
-    public void consultarMovimentacoes(Operador o) {
+    public void consultarMovimentacoes() {
         for (Movimentacao m : this.movimentacoes) System.out.println(m);
     }
 
@@ -78,11 +78,20 @@ public class ContaBancaria implements Conta {
     }
 
     @Override
-    public void emitirRelatorio(Operador o) {
+    public void emitirRelatorio(ArrayList<Operador> operadores) {
+        String nome = '', iniciais = '';
+
+        for (Operador o : operadores) {
+            if (o.getIdOperador() == this.idOperador) {
+                nome = o.getNome();
+                iniciais = o.getIniciais();
+            }
+        }
+
         System.out.println(
                 "Conta " + this.idConta
-                        + ", criada por " + o.getNome()
-                        + "(" + o.getIniciais() + ")"
+                        + ", criada por " + nome
+                        + "(" + iniciais + ")"
                         + " em " + this.dataCriacao
         );
 

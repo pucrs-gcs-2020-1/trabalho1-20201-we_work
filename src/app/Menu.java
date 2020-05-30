@@ -32,29 +32,35 @@ public class Menu {
         switch (option) {
             case 1:
                 cadastrarNovoOperador();
+
                 break;
 
             case 2:
                 System.out.println(mostrarOperadorAtual());
+
                 break;
 
             case 3:
                 trocarOperador();
+
                 break;
 
             case 4:
                 operadorAtual.criarConta(contas);
+
                 break;
 
             case 5:
                 exibirContas();
                 selecionarConta();
 
+                break;
+
             case 6:
                 int valorTotal = 0;
 
                 for (Conta c : contas) {
-                    c.emitirRelatorio(operadorAtual);
+                    c.emitirRelatorio(operadores);
                     valorTotal += c.getSaldo();
                 }
 
@@ -98,10 +104,9 @@ public class Menu {
         String nome = in.nextLine();
 
         boolean isInvalid = true;
-        /// TODO: Rever
-        int id = 0;
+        int id = -1;
 
-        while (isInvalid) {
+        while (isInvalid && id != -1) {
             System.out.println("Digite um valor númerico inteiro para usar como id");
             id = in.nextInt();
 
@@ -155,7 +160,7 @@ public class Menu {
             }
         }
 
-        System.out.println("Conta selecionada\n\n");
+        System.out.println("Conta selecionada\n");
 
         System.out.println("1 -> Adicionar crédito à conta selecionada");
         System.out.println("2 -> Consultar movimentos da conta selecionada");
@@ -180,7 +185,6 @@ public class Menu {
                 break;
 
             case 2:
-                /// TODO: Rever
                 contaAtual.consultarMovimentacoes();
 
                 break;
@@ -215,8 +219,8 @@ public class Menu {
                 break;
 
             case 4:
-                /// TODO: Rever
-                contaAtual.emitirRelatorio();
+                contaAtual.emitirRelatorio(operadores);
+
                 break;
 
             case 5:
@@ -238,7 +242,7 @@ public class Menu {
                     break;
                 }
 
-                contaAtual.consultarMovimentacoes(op);
+                contaAtual.consultarMovimentacoes();
 
                 break;
 
@@ -247,6 +251,7 @@ public class Menu {
                 int opcao = in.nextInt();
 
                 contaAtual.consultarMovimentacoesPorDespesaOuReceita(opcao);
+
                 break;
 
             default:
