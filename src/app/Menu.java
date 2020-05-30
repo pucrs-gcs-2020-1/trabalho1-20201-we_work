@@ -61,6 +61,7 @@ public class Menu {
 
                 for (Conta c : contas) {
                     c.emitirRelatorio(operadores);
+                    print("\n");
                     valorTotal += c.getSaldo();
                 }
 
