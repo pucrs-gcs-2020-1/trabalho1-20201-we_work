@@ -182,7 +182,6 @@ public class Menu {
             print("4 -> Emitir um relatório da conta selecionada");
             print("5 -> Consultar movimentos da conta selecionada por operador");
             print("6 -> Consultar movimentos da conta selecionada por receita ou despesa");
-            print("Digite qualquer coisa para retornar ao menu principal");
 
             int escolha = lerRespostaDoUsuario();
 
