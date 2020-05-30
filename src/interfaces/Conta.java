@@ -1,13 +1,30 @@
 package interfaces;
 
+import entities.Movimentacao;
+import entities.Operador;
+
+import java.util.ArrayList;
+
 public interface Conta {
-    public boolean saque(double valor);
+    public void credito(int valor);
 
-    public void deposito(double valor);
+    public boolean debito(int valor);
 
-    public boolean transferencia(ContaBancaria c, double valor);
+    public int getSaldo();
 
-    public double getSaldo();
+    public String getNome();
 
-    public String getNumeroConta();
+    public String getIdConta();
+
+    public ArrayList<Movimentacao> getMovimentacoes();
+
+    public Movimentacao addMovimentacao(Movimentacao m);
+
+    public void consultarMovimentacoes();
+
+    public void emitirRelatorio(ArrayList<Operador> operadores);
+
+    public void consultarMovimentacoesPorDespesaOuReceita(int s);
+
+    public String getIdContaT();
 }
