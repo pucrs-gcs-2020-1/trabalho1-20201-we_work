@@ -64,16 +64,16 @@ public class ContaBancaria implements Conta {
 
     @Override
     public void consultarMovimentacoes() {
-        for (Movimentacao m : this.movimentacoes) System.out.println(m);
+        for (Movimentacao m : this.movimentacoes) Menu.print(m);
     }
 
     @Override
     public void consultarMovimentacoesPorDespesaOuReceita(int s) {
         for (Movimentacao m : this.movimentacoes) {
             if (s == 1)
-                if (m.getValorMonetario() < 0) System.out.println(m);
+                if (m.getValorMonetario() < 0) Menu.print(m);
             if (s == 2)
-                if (m.getValorMonetario() > 0) System.out.println(m);
+                if (m.getValorMonetario() > 0) Menu.print(m);
         }
     }
 
@@ -88,16 +88,16 @@ public class ContaBancaria implements Conta {
             }
         }
 
-        System.out.println(
+        Menu.print(
                 "Conta " + this.idConta
                         + ", criada por " + nome
                         + "(" + iniciais + ")"
                         + " em " + this.dataCriacao
         );
 
-        for (Movimentacao m : this.movimentacoes) System.out.println(m);
+        for (Movimentacao m : this.movimentacoes) Menu.print(m);
 
-        System.out.println("Saldo atual: " + Movimentacao.montaValor(this.saldo));
+        Menu.print("Saldo atual: " + Movimentacao.montaValor(this.saldo));
     }
 }
 

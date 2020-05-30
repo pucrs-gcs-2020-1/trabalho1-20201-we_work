@@ -38,17 +38,17 @@ public class Operador {
     }
 
     public void criarConta(ArrayList<Conta> contas) {
-        System.out.println("\nDigite o número da conta:\n");
-        String idConta = in.nextLine();
+        Menu.print("Digite o número da conta:");
+        String idConta = Menu.in.next();
 
-        System.out.println("Agora digite o nome do proprietário da conta: \n");
-        String nome = in.nextLine();
+        Menu.print("Agora digite o nome do proprietário da conta:");
+        String nome = Menu.in.nextLine();
 
         Conta conta = new ContaBancaria(idConta, nome, this.idOperador);
 
         contas.add(conta);
 
-        System.out.println("Conta Criada. XD");
+        Menu.print("Conta Criada");
     }
 
     public void transferencia(Conta d, Conta c, int v) {
@@ -65,26 +65,26 @@ public class Operador {
             d.addMovimentacao(new Movimentacao(this.iniciais, new Random().nextInt(3000), s, -v));
             c.addMovimentacao(new Movimentacao(this.iniciais, new Random().nextInt(3000), s, v));
 
-            System.out.println(s);
+            Menu.print(s);
+        } else {
+            Menu.print("Nao foi possivel realizar a tranferencia para " + c.getNome());
         }
-
-        System.out.println("Nao foi possivel realizar a tranferencia para " + c.getNome());
     }
 
     public void addCredito(Conta c, String d, int v) {
         c.credito(v);
         c.addMovimentacao(new Movimentacao(this.iniciais, new Random().nextInt(3000), d, v));
-        System.out.println("Valor " + Movimentacao.montaValor(v) + " creditado com sucesso!!");
+        Menu.print("Valor " + Movimentacao.montaValor(v) + " creditado com sucesso!!");
 
     }
 
     public boolean pagarConta(Conta c, String d, int v) {
         if (c.debito(v)) {
             c.addMovimentacao(new Movimentacao(this.iniciais, new Random().nextInt(3000), d, -v));
-            System.out.println("Valor " + Movimentacao.montaValor(v) + " debitado com sucesso!!");
+            Menu.print("Valor " + Movimentacao.montaValor(v) + " debitado com sucesso!!");
             return true;
         }
-        System.out.println("Valor insuficiênte para pagar esta conta");
+        Menu.print("Valor insuficiênte para pagar esta conta");
         return false;
 
     }

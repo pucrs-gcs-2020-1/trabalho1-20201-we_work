@@ -10,16 +10,11 @@ public class SistemaInicial {
 
     public SistemaInicial() {
         this.contas = new ArrayList<>();
-        Conta c1 = new ContaBancaria("789456", "Mick Jagger", 200);
-        Conta c2 = new ContaBancaria("321539", "Maik Tyson", 5000);
-        Conta c3 = new ContaBancaria("666666", "Angus Young", 8000);
-        Conta c4 = new ContaBancaria("147951", "Cindy Louper", 808);
-        Conta c5 = new ContaBancaria("888488", "Mohamed Ali", 10);
-        contas.add(c1);
-        contas.add(c2);
-        contas.add(c3);
-        contas.add(c4);
-        contas.add(c5);
+        contas.add(new ContaBancaria("789456", "Mick Jagger", 1));
+        contas.add(new ContaBancaria("321539", "Maik Tyson", 1));
+        contas.add(new ContaBancaria("666666", "Angus Young", 1));
+        contas.add(new ContaBancaria("147951", "Cindy Louper", 1));
+        contas.add(new ContaBancaria("888488", "Mohamed Ali", 1));
     }
 
     public ArrayList<Conta> getContas() {
