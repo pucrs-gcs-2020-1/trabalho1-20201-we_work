@@ -39,8 +39,10 @@ public class Movimentacao {
 
     public static String montaValor(int v) {
         int centavos = v % 100;
+        int decavos = v % 10;
         int real = v / 100;
-        return "R$" + real + "," + centavos;
+
+        return "R$" + real + "," + decavos + centavos;
     }
 
     @Override
