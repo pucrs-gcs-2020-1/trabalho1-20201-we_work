@@ -273,18 +273,18 @@ public class Menu {
                 case 7:
                     print("Escreva uma descrição para a conta a ser paga");
                     Scanner in = new Scanner(System.in);
-                    String d = in.nextLine();
+                    String descricao = in.nextLine();
 
                     print("Escreva o valor em centavos que deseja utilizar para pagar esta conta");
-                    int v = in.nextInt();
+                    int value = in.nextInt();
 
-                    if (v < 0) {
+                    if (value < 0) {
                         print("Você não pode pagar uma conta com valor negativo");
 
                         break;
                     }
 
-                    operadorAtual.pagarConta(contaAtual, d, v);
+                    operadorAtual.pagarConta(contaAtual, descricao, value);
 
                     break;
 
