@@ -91,6 +91,6 @@ public class Operador {
 
     @Override
     public String toString() {
-        return "\nNome: " + this.nome + ", ID: " + this.idOperador;
+        return "- Nome: " + this.nome + ", ID: " + this.idOperador;
     }
 }

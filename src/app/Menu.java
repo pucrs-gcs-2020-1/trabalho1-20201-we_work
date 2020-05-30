@@ -155,122 +155,128 @@ public class Menu {
         print("Digite o número da conta que deseja selecionar");
 
         String numeroConta = in.next();
+        Conta contaValida = null;
 
         for (Conta c : contas) {
             if (c.getIdConta().equals(numeroConta)) {
-                contaAtual = c;
+                contaValida = c;
             }
         }
 
-        print("Conta selecionada");
+        if (contaValida != null) {
+            print("Conta selecionada");
 
-        print("1 -> Adicionar crédito à conta selecionada");
-        print("2 -> Consultar movimentos da conta selecionada");
-        print("3 -> Transferir fundos de uma conta para a outra");
-        print("4 -> Emitir um relatório da conta selecionada");
-        print("5 -> Consultar movimentos da conta selecionada por operador");
-        print("6 -> Consultar movimentos da conta selecionada por receita ou despesa");
-        print("Digite qualquer coisa para retornar ao menu principal");
+            print("1 -> Adicionar crédito à conta selecionada");
+            print("2 -> Consultar movimentos da conta selecionada");
+            print("3 -> Transferir fundos de uma conta para a outra");
+            print("4 -> Emitir um relatório da conta selecionada");
+            print("5 -> Consultar movimentos da conta selecionada por operador");
+            print("6 -> Consultar movimentos da conta selecionada por receita ou despesa");
+            print("Digite qualquer coisa para retornar ao menu principal");
 
-        int escolha = lerRespostaDoUsuario();
+            int escolha = lerRespostaDoUsuario();
 
-        switch (escolha) {
-            case 1:
-                print("Escreva a descrição deste crédito");
-                String d = in.next();
+            switch (escolha) {
+                case 1:
+                    print("Escreva a descrição deste crédito");
+                    String d = in.next();
 
-                print("Defina o valor para crédito");
-                int v = in.nextInt();
+                    print("Defina o valor para crédito");
+                    int v = in.nextInt();
 
-                operadorAtual.addCredito(contaAtual, d, v);
+                    operadorAtual.addCredito(contaAtual, d, v);
 
-                break;
-
-            case 2:
-                contaAtual.consultarMovimentacoes();
-
-                break;
-
-            case 3:
-                exibirContas();
-                print("Informe o número da conta destino:");
-
-                String numContaDestino = in.next();
-
-                if (numContaDestino.equals(contaAtual.getIdConta())) {
-                    print("Você não pode transferir para si mesmo");
                     break;
-                }
 
-                Conta contaDestino = contaAtual;
+                case 2:
+                    contaAtual.consultarMovimentacoes();
 
-                for (Conta c : contas) {
-                    if (c.getIdConta().equals(numContaDestino)) {
-                        contaDestino = c;
+                    break;
+
+                case 3:
+                    exibirContas();
+                    print("Informe o número da conta destino:");
+
+                    String numContaDestino = in.next();
+
+                    if (numContaDestino.equals(contaAtual.getIdConta())) {
+                        print("Você não pode transferir para si mesmo");
+                        break;
                     }
-                }
 
-                if (contaDestino == contaAtual){
-                    print("Conta de destino invalida");
-                    break;
-                }
+                    Conta contaDestino = contaAtual;
 
-                print("Informe o valor desejado para transferência:");
-                int valor = in.nextInt();
-
-                operadorAtual.transferencia(contaAtual, contaDestino, valor);
-
-                break;
-
-            case 4:
-                contaAtual.emitirRelatorio(operadores);
-
-                break;
-
-            case 5:
-                print("digite o ID do operador");
-                exibirOperadores();
-
-                int idOperador = in.nextInt();
-
-                Operador op = null;
-
-                for (Operador o : operadores) {
-                    if (o.getIdOperador() == idOperador) {
-                        op = o;
+                    for (Conta c : contas) {
+                        if (c.getIdConta().equals(numContaDestino)) {
+                            contaDestino = c;
+                        }
                     }
-                }
 
-                if (op == null) {
-                    print("ID de operador inválido");
+                    if (contaDestino == contaAtual){
+                        print("Conta de destino invalida");
+                        break;
+                    }
+
+                    print("Informe o valor desejado para transferência:");
+                    int valor = in.nextInt();
+
+                    operadorAtual.transferencia(contaAtual, contaDestino, valor);
+
                     break;
-                }
 
-                contaAtual.consultarMovimentacoes();
+                case 4:
+                    contaAtual.emitirRelatorio(operadores);
 
-                break;
+                    break;
 
-            case 6:
-                print("digite o 1 (DESPESA) ou 2 (RECEITA)");
-                int opcao = in.nextInt();
+                case 5:
+                    print("digite o ID do operador");
+                    exibirOperadores();
 
-                contaAtual.consultarMovimentacoesPorDespesaOuReceita(opcao);
+                    int idOperador = in.nextInt();
 
-                break;
+                    Operador op = null;
 
-            default:
-                break;
+                    for (Operador o : operadores) {
+                        if (o.getIdOperador() == idOperador) {
+                            op = o;
+                        }
+                    }
+
+                    if (op == null) {
+                        print("ID de operador inválido");
+                        break;
+                    }
+
+                    contaAtual.consultarMovimentacoes();
+
+                    break;
+
+                case 6:
+                    print("digite o 1 (DESPESA) ou 2 (RECEITA)");
+                    int opcao = in.nextInt();
+
+                    contaAtual.consultarMovimentacoesPorDespesaOuReceita(opcao);
+
+                    break;
+
+                default:
+                    break;
+            }
+            
+        } else if(contaValida == null) {
+            print("Conta Inválida");
         }
     }
 
     private void exibirOperadores() {
         print("No sistema existem os seguintes operadores cadastrados:\n");
-        for (Operador o : operadores) print("- " + o);
+        for (Operador o : operadores) print(o);
     }
 
     private void exibirContas() {
         print("No sistema existem as seguintes contas:\n");
-        for (Conta c : contas) print("- " + c.getIdConta());
+        for (Conta c : contas) print(c.getIdConta());
     }
 
     public static void print(String s) {
