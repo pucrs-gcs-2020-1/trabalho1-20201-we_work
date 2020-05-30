@@ -1,15 +1,16 @@
 package entities;
 
 import interfaces.Conta;
+import app.Menu;
 
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
+
 
 
 public class Operador {
-    Scanner in = new Scanner(System.in);
+    
     private int idOperador;
     private String nome;
     private String iniciais;

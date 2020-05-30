@@ -1,4 +1,5 @@
 package entities;
+import app.Menu;
 
 import interfaces.Conta;
 
@@ -64,16 +65,16 @@ public class ContaBancaria implements Conta {
 
     @Override
     public void consultarMovimentacoes() {
-        for (Movimentacao m : this.movimentacoes) Menu.print(m);
+        for (Movimentacao m : this.movimentacoes) Menu.print(m.toString());
     }
 
     @Override
     public void consultarMovimentacoesPorDespesaOuReceita(int s) {
         for (Movimentacao m : this.movimentacoes) {
             if (s == 1)
-                if (m.getValorMonetario() < 0) Menu.print(m);
+                if (m.getValorMonetario() < 0) Menu.print(m.toString());
             if (s == 2)
-                if (m.getValorMonetario() > 0) Menu.print(m);
+                if (m.getValorMonetario() > 0) Menu.print(m.toString());
         }
     }
 
@@ -95,7 +96,7 @@ public class ContaBancaria implements Conta {
                         + " em " + this.dataCriacao
         );
 
-        for (Movimentacao m : this.movimentacoes) Menu.print(m);
+        for (Movimentacao m : this.movimentacoes) Menu.print(m.toString());
 
         Menu.print("Saldo atual: " + Movimentacao.montaValor(this.saldo));
     }

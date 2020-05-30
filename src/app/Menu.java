@@ -103,12 +103,13 @@ public class Menu {
 
         print("Digite o nome completo para o novo operador");
         String nome = "";
+        in = new Scanner(System.in);
         nome = in.nextLine(); 
 
         boolean isInvalid = true;
         int id = -1;
 
-        while (isInvalid && id != -1) {
+        while (isInvalid && id == -1) {
             print("Digite um valor númerico inteiro para usar como id");
             id = in.nextInt();
 
