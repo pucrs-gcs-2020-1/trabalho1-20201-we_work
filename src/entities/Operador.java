@@ -95,11 +95,13 @@ public class Operador {
         if (c.debito(v)) {
             c.addMovimentacao(new Movimentacao(this.iniciais, new Random().nextInt(3000), d, -v));
             Menu.print("Valor " + Movimentacao.montaValor(v) + " debitado com sucesso!!");
+
             return true;
         }
+        
         Menu.print("Valor insuficiênte para pagar esta conta");
-        return false;
 
+        return false;
     }
 
     @Override

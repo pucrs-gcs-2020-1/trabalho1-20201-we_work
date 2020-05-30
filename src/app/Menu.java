@@ -182,6 +182,7 @@ public class Menu {
             print("4 -> Emitir um relatório da conta selecionada");
             print("5 -> Consultar movimentos da conta selecionada por operador");
             print("6 -> Consultar movimentos da conta selecionada por receita ou despesa");
+            print("7 -> Pagar uma conta");
 
             int escolha = lerRespostaDoUsuario();
 
@@ -266,6 +267,24 @@ public class Menu {
                     int opcao = in.nextInt();
 
                     contaAtual.consultarMovimentacoesPorDespesaOuReceita(opcao);
+
+                    break;
+
+                case 7:
+                    print("Escreva uma descrição para a conta a ser paga");
+                    Scanner in = new Scanner(System.in);
+                    String d = in.nextLine();
+
+                    print("Escreva o valor em centavos que deseja utilizar para pagar esta conta");
+                    int v = in.nextInt();
+
+                    if (v < 0) {
+                        print("Você não pode pagar uma conta com valor negativo");
+
+                        break;
+                    }
+
+                    operadorAtual.pagarConta(contaAtual, d, v);
 
                     break;
 
