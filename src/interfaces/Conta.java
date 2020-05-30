@@ -12,9 +12,15 @@ public interface Conta {
 
     public String getNome();
 
-    public String getNumeroConta();
+    public String getIdConta();
 
     public ArrayList<Movimentacao> getMovimentacoes();
 
     public Movimentacao addMovimentacao(Movimentacao m);
+
+    public void consultarMovimentacoes();
+
+    public void emitirRelatorio();
+    
+    public void consultarMovimentacoesPorDespesaOuReceita(int s);
 }

@@ -6,7 +6,7 @@ public class App {
         int option = Menu.lerRespostaDoUsuario();
         Menu m = new Menu();
 
-        while (option != 10) {
+        while (option != 9) {
             m.dashBoard(option);
             option = Menu.lerRespostaDoUsuario();
         }

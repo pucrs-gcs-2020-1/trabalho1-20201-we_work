@@ -44,10 +44,10 @@ public class  Movimentacao {
 
   	@Override
   	public String toString() {
-		return "\nData: " + this.data +
-				", Inciais Operador: " + this.iniciaisOperador +
-				", Id Movimentacao: " + this.idMovimentacao +
-				", Descricao: " + this.descricao +
-				", Valor: " + montaValor(this.valorMonetario);
+		return "Data: " + this.data 
+				+ ", Inciais Operador: " + this.iniciaisOperador 
+				+ ", Id Movimentacao: " + this.idMovimentacao 
+				+ ", Descricao: " + this.descricao 
+				+ ", Valor: " + montaValor(this.valorMonetario);
   	}
 }

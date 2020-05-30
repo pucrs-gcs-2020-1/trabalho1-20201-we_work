@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ContaBancaria implements Conta {
-    protected int saldo;
-    protected String numero;
+    private int saldo;
+    private String idConta;
     private int idOperador;
     private String nome;
     private ArrayList<Movimentacao> movimentacoes;
     private Date dataCriacao;
 
-    public ContaBancaria(String num, String n, int idOperador) {
-        this.numero = num;
-        this.nome = n;
+    public ContaBancaria(String idConta, String nome, int idOperador) {
+        this.idConta = idConta;
+        this.nome = nome;
         this.saldo = 0;
         this.idOperador = idOperador;
         this.movimentacoes = new ArrayList<Movimentacao>();
@@ -47,8 +47,8 @@ public class ContaBancaria implements Conta {
     }
 
     @Override
-    public String getNumeroConta() {
-        return this.numero;
+    public String getIdConta() {
+        return this.idConta;
     }
 
     @Override
@@ -63,9 +63,32 @@ public class ContaBancaria implements Conta {
     }
 
     @Override
-    public String toString() {
-        // TODO
-        return "";
+    public void consultarMovimentacoes(Operador o) {
+        for (Movimentacao m : this.movimentacoes) System.out.println(m);
+    }
+
+    @Override
+    public void consultarMovimentacoesPorDespesaOuReceita(int s) {
+        for (Movimentacao m : this.movimentacoes) {
+            if (s == 1) 
+                if (m.getValorMonetario() < 0) System.out.println(m);
+            if (s == 2)
+                if (m.getValorMonetario() > 0)) System.out.println(m);
+        }
+    }
+
+    @Override
+    public void emitirRelatorio() {
+        System.out.println(
+            "Conta " + this.idConta 
+            + ", criada por " + o.getNome() 
+            + "(" + o.getIniciais() + ")"
+            + " em " + this.dataCriacao
+        );
+
+        for (Movimentacao m : this.movimentacoes) System.out.println(m);
+
+        System.out.println("Saldo atual: " + Movimentacao.montaValor(this.saldo));
     }
 }
 

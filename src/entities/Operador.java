@@ -22,6 +22,10 @@ public class Operador {
         }
     }
 
+    public int getIdOperador() {
+        return this.idOperador();
+    }
+
     public String getNome() {
         return this.nome;
     }
@@ -30,8 +34,18 @@ public class Operador {
         return this.iniciais;
     }
 
-    public int getIdOperador() {
-        return this.idOperador;
+    public void criarConta() {
+        System.out.println("\nDigite o número da conta:\n");
+        String idConta = in.nextLine();
+
+        System.out.println("Agora digite o nome do proprietário da conta: \n");
+        String nome = in.nextLine();
+
+        Conta conta = new ContaBancaria(idConta, nome, operatorAtual.getIdOperador());
+
+        contas.add(conta);
+
+        System.out.println("Conta Criada. XD");
     }
 
     public void transferencia(Conta d, Conta c, int v) {
@@ -74,6 +88,6 @@ public class Operador {
 
     @Override
     public String toString() {
-        return "\nNome: " + getNome() + ", ID: " + getIdOperador();
+        return "\nNome: " + this.nome + ", ID: " + this.idOperador;
     }
 }
