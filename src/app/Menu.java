@@ -274,7 +274,7 @@ public class Menu {
 
     private void exibirOperadores() {
         print("No sistema existem os seguintes operadores cadastrados:\n");
-        for (Operador o : operadores) print(o);
+        for (Operador o : operadores) print(o.toString());
     }
 
     private void exibirContas() {

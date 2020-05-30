@@ -6,7 +6,7 @@ import app.Menu;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.Scanner;
 
 
 public class Operador {
@@ -43,7 +43,8 @@ public class Operador {
         String idConta = Menu.in.next();
 
         Menu.print("Agora digite o nome do proprietário da conta:");
-        String nome = Menu.in.nextLine();
+        Scanner in = new Scanner(System.in);
+        String nome = in.nextLine();
 
         Conta conta = new ContaBancaria(idConta, nome, this.idOperador);
 
