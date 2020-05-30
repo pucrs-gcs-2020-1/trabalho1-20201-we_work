@@ -38,9 +38,9 @@ public class Movimentacao {
     }
 
     public static String montaValor(int v) {
-        int real = v / 100;
-        int decavos = (v % 100) / 10;
-        int centavos = v % 10;
+        int real = (v / 100) * -1;
+        int decavos = ((v % 100) / 10) * -1;
+        int centavos = (v % 10) * -1;
 
 		if (v < 0) 
 			return "-" + real + "," + decavos + centavos;
@@ -57,5 +57,3 @@ public class Movimentacao {
                 + ", Valor: " + montaValor(this.valorMonetario);
     }
 }
-
-5011
