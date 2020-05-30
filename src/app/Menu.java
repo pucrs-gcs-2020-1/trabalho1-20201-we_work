@@ -163,8 +163,10 @@ public class Menu {
                 contaValida = c;
             }
         }
+        
+        contaAtual = contaValida;
 
-        if (contaValida != null) {
+        if (!contaAtual.equals(null)) {
             contaAtual = contaValida;
 
             print("Conta selecionada");
@@ -267,7 +269,7 @@ public class Menu {
                     break;
             }
             
-        } else if(contaValida == null) {
+        } else if(contaAtual.equals(null)) {
             print("Conta Inválida");
         }
     }

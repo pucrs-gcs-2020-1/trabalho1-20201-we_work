@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-
 public class Operador {
     
     private int idOperador;
@@ -42,14 +41,27 @@ public class Operador {
         Menu.print("Digite o número da conta:");
         String idConta = Menu.in.next();
 
-        Menu.print("Agora digite o nome do proprietário da conta:");
-        String nome = Menu.in.nextLine();
+        boolean isValid = true;
 
-        Conta conta = new ContaBancaria(idConta, nome, this.idOperador);
+        for (Conta c : contas) {
+            if (c.getIdConta().equals(idConta)) {
+                isValid = false;
+            }
+        }
 
-        contas.add(conta);
+        if (isValid) {
+            Menu.print("Agora digite o nome do proprietário da conta:");
 
-        Menu.print("Conta Criada");
+            String nome = Menu.in.nextLine();
+
+            Conta conta = new ContaBancaria(idConta, nome, this.idOperador);
+
+            contas.add(conta);
+
+            Menu.print("Conta Criada");
+        } else if(!isValid) {
+            print("Número de conta já existente")
+        }
     }
 
     public void transferencia(Conta d, Conta c, int v) {
