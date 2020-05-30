@@ -4,9 +4,9 @@ import entities.Movimentacao;
 import java.util.ArrayList;
 
 public interface Conta {
-    public void credito(double valor);
+    public void credito(int valor);
     
-    public boolean debito(double valor);
+    public boolean debito(int valor);
 
     public int getSaldo();
 

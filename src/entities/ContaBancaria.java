@@ -23,12 +23,12 @@ public class ContaBancaria implements Conta {
     }
 
     @Override
-    public void credito(double valor) {
+    public void credito(int valor) {
         this.saldo += valor;
     }
 
     @Override
-    public boolean debito(double valor) {
+    public boolean debito(int valor) {
         if (this.saldo > 0 && this.saldo > valor) {
             this.saldo -= valor;
             return true;

@@ -148,7 +148,7 @@ public class Menu {
         System.out.println("Conta selecionada");
         System.out.println("\n\n");
 
-        System.out.println("1 -> Adicionar movimento à conta selecionada");
+        System.out.println("1 -> Adicionar crédito à conta selecionada");
         System.out.println("2 -> Consultar movimentos da conta selecionada.");
         System.out.println("3 -> Transferir fundos de uma conta para a outra.");
         System.out.println("4 -> Emitir um relatório geral.");
@@ -162,7 +162,11 @@ public class Menu {
                 {
                     if(c.getNumeroConta()==numeroConta)
                     {
-                        adicionarMovimento(c);
+                        System.out.println("Escreva a descrição deste crédito...");
+                        String d = in.nextLine();
+                        System.out.println("Defina o valor para crédito...");
+                        int v = in.nextInt();
+                        operatorAtual.addCredito(c, d, v);
                     }
                 }
 
@@ -225,22 +229,23 @@ public class Menu {
         }
     }
 
-    private static void adicionarMovimento(Conta conta) {
-        //TODO Rever Receber Duas Contas Como Parametro
-        System.out.println("adicionando novo movimento...");
-        System.out.println("Informe operadora: ");
-        String op=in.nextLine();
-        System.out.println("ID da movimentação: ");
-        int mv=in.nextInt();
-        System.out.println("Descrição da movimentação: ");
-        String descricao = in.nextLine();
-        System.out.println("Valor da movimentação: ");
-        int v=in.nextInt();
-        Movimentacao move = new Movimentacao(op,mv,descricao,v);
-        conta.addMovimentacao(move);
-        System.out.println("Movimentação concluida com sucesso");
+    // private static void adicionarMovimento(Conta conta) {
+    //     //TODO Rever Receber Duas Contas Como Parametro
+    //     System.out.println("adicionando novo movimento...");
+    //     System.out.println("Descrição da movimentação: ");
+    //     String descricao = in.nextLine();
+    //     System.out.println("Valor da movimentação: ");
+    //     int v=in.nextInt();
+        
+        
+    //     System.out.println("Movimentação concluida com sucesso");
 
-    }
+    // }
+
+
+    
+
+    
 
     private static void consultarMovimentos(ContaBancaria contaBancaria) {
         for(Movimentacao m: contaBancaria.getMovimentacoes()){
