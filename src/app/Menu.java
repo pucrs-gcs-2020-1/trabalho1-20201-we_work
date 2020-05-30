@@ -3,8 +3,11 @@ package app;
 import entities.ContaBancaria;
 import entities.Movimentacao;
 import entities.Operador;
+
 import java.util.Scanner;
+
 import interfaces.Conta;
+
 import java.util.ArrayList;
 
 public class Menu {
@@ -40,7 +43,7 @@ public class Menu {
                 break;
 
             case 4:
-                operadorAtual.criarConta();
+                operadorAtual.criarConta(contas);
                 break;
 
             case 5:
@@ -50,8 +53,8 @@ public class Menu {
             case 6:
                 int valorTotal = 0;
 
-                for (Conta c: contas) {
-                    c.emitirRelatorio();
+                for (Conta c : contas) {
+                    c.emitirRelatorio(operadorAtual);
                     valorTotal += c.getSaldo();
                 }
 
@@ -70,7 +73,7 @@ public class Menu {
         System.out.println("1 -> Cadastrar um operador");
         System.out.println("2 -> Mostrar operador atual");
         System.out.println("3 -> Trocar de operador");
-        System.out.println("4 -> Criar uma conta"); 
+        System.out.println("4 -> Criar uma conta");
         System.out.println("5 -> Selecionar uma conta");
         System.out.println("6 -> Emitir um relatório geral");
         System.out.println("7 -> Terminar programa");
@@ -95,20 +98,22 @@ public class Menu {
         String nome = in.nextLine();
 
         boolean isInvalid = true;
+        /// TODO: Rever
+        int id = 0;
 
-        while(isInvalid) {
+        while (isInvalid) {
             System.out.println("Digite um valor númerico inteiro para usar como id");
-            int id = in.nextInt();
+            id = in.nextInt();
 
             for (Operador o : operadores) {
-                if (id == o.getIdOperador) {
-                    System.out.println("Já existe um operador com este ID. Por favor, digite outro valor.")
+                if (id == o.getIdOperador()) {
+                    System.out.println("Já existe um operador com este ID. Por favor, digite outro valor.");
                 } else {
                     isInvalid = false;
                 }
             }
         }
-        
+
         operadores.add(new Operador(id, nome));
 
         System.out.println("Novo Operador Cadastrado");
@@ -145,7 +150,7 @@ public class Menu {
         String numeroConta = in.nextLine();
 
         for (Conta c : contas) {
-            if(c.getNumeroConta() == numeroConta) {
+            if (c.getIdConta() == numeroConta) {
                 contaAtual = c;
             }
         }
@@ -175,6 +180,7 @@ public class Menu {
                 break;
 
             case 2:
+                /// TODO: Rever
                 contaAtual.consultarMovimentacoes();
 
                 break;
@@ -185,15 +191,15 @@ public class Menu {
 
                 String numContaDestino = in.nextLine();
 
-                if (numContaDestino == contaAtual.getNumeroConta()) {
+                if (numContaDestino.equals(contaAtual.getIdConta())) {
                     System.out.println("Você não pode transferir para si mesmo");
                     break;
                 }
 
-                Conta contaDestino;
+                Conta contaDestino = contaAtual;
 
                 for (Conta c : contas) {
-                    if (c.getNumeroConta() == numContaDestino) {
+                    if (c.getIdConta().equals(numContaDestino)) {
                         contaDestino = c;
                     } else {
                         System.out.println("Conta de destino invalida");
@@ -202,23 +208,24 @@ public class Menu {
                 }
 
                 System.out.println("Informe o valor desejado para transferência:");
-                int valor = in.nextInt(); 
+                int valor = in.nextInt();
 
                 operadorAtual.transferencia(contaAtual, contaDestino, valor);
 
                 break;
 
             case 4:
+                /// TODO: Rever
                 contaAtual.emitirRelatorio();
                 break;
 
             case 5:
-                System.out.println("digite o ID do operador")
+                System.out.println("digite o ID do operador");
                 exibirOperadores();
 
                 int idOperador = in.nextInt();
 
-                Operador op;
+                Operador op = null;
 
                 for (Operador o : operadores) {
                     if (o.getIdOperador() == idOperador) {
@@ -235,11 +242,12 @@ public class Menu {
 
                 break;
 
-            case 6: 
+            case 6:
                 System.out.println("digite o 1 (DESPESA) ou 2 (RECEITA)");
                 int opcao = in.nextInt();
 
                 contaAtual.consultarMovimentacoesPorDespesaOuReceita(opcao);
+                break;
 
             default:
                 break;
@@ -247,12 +255,12 @@ public class Menu {
     }
 
     private void exibirOperadores() {
-        System.out.println("No sistema existem os seguintes operadores cadastrados:\n")
-        for (Operador o : contas) System.out.println(o);
+        System.out.println("No sistema existem os seguintes operadores cadastrados:\n");
+        for (Operador o : operadores) System.out.println(o);
     }
 
     private void exibirContas() {
-        System.out.println("No sistema existem as seguintes contas:\n")
-        for (Conta c : contas) System.out.println(c.getNumeroConta());
+        System.out.println("No sistema existem as seguintes contas:\n");
+        for (Conta c : contas) System.out.println(c.getIdConta());
     }
 }

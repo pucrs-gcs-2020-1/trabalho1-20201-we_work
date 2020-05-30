@@ -1,12 +1,15 @@
 package entities;
 
 import interfaces.Conta;
+
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 
 public class Operador {
+    Scanner in = new Scanner(System.in);
     private int idOperador;
     private String nome;
     private String iniciais;
@@ -23,7 +26,7 @@ public class Operador {
     }
 
     public int getIdOperador() {
-        return this.idOperador();
+        return this.idOperador;
     }
 
     public String getNome() {
@@ -34,14 +37,14 @@ public class Operador {
         return this.iniciais;
     }
 
-    public void criarConta() {
+    public void criarConta(ArrayList<Conta> contas) {
         System.out.println("\nDigite o número da conta:\n");
         String idConta = in.nextLine();
 
         System.out.println("Agora digite o nome do proprietário da conta: \n");
         String nome = in.nextLine();
 
-        Conta conta = new ContaBancaria(idConta, nome, operatorAtual.getIdOperador());
+        Conta conta = new ContaBancaria(idConta, nome, this.idOperador);
 
         contas.add(conta);
 
@@ -68,22 +71,22 @@ public class Operador {
         System.out.println("Nao foi possivel realizar a tranferencia para " + c.getNome());
     }
 
-    public void addCredito(Conta c,  String d, int v){
+    public void addCredito(Conta c, String d, int v) {
         c.credito(v);
         c.addMovimentacao(new Movimentacao(this.iniciais, new Random().nextInt(3000), d, v));
-        System.out.println("Valor "+Movimentacao.montaValor(v)+ " creditado com sucesso!!");
+        System.out.println("Valor " + Movimentacao.montaValor(v) + " creditado com sucesso!!");
 
     }
 
-    public boolean pagarConta(Conta c, String d, int v){
-        if(c.debito(v)){
+    public boolean pagarConta(Conta c, String d, int v) {
+        if (c.debito(v)) {
             c.addMovimentacao(new Movimentacao(this.iniciais, new Random().nextInt(3000), d, -v));
-            System.out.println("Valor "+Movimentacao.montaValor(v)+ " debitado com sucesso!!");
+            System.out.println("Valor " + Movimentacao.montaValor(v) + " debitado com sucesso!!");
             return true;
         }
-        System.out.println("Valor insuficiênte para pagar esta conta" );
+        System.out.println("Valor insuficiênte para pagar esta conta");
         return false;
-        
+
     }
 
     @Override

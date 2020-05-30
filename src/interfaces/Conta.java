@@ -1,11 +1,13 @@
 package interfaces;
+
 import entities.Movimentacao;
+import entities.Operador;
 
 import java.util.ArrayList;
 
 public interface Conta {
     public void credito(int valor);
-    
+
     public boolean debito(int valor);
 
     public int getSaldo();
@@ -18,9 +20,9 @@ public interface Conta {
 
     public Movimentacao addMovimentacao(Movimentacao m);
 
-    public void consultarMovimentacoes();
+    public void consultarMovimentacoes(Operador o);
 
-    public void emitirRelatorio();
-    
+    public void emitirRelatorio(Operador o);
+
     public void consultarMovimentacoesPorDespesaOuReceita(int s);
 }

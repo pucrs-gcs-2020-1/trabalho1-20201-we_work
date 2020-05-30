@@ -70,20 +70,20 @@ public class ContaBancaria implements Conta {
     @Override
     public void consultarMovimentacoesPorDespesaOuReceita(int s) {
         for (Movimentacao m : this.movimentacoes) {
-            if (s == 1) 
+            if (s == 1)
                 if (m.getValorMonetario() < 0) System.out.println(m);
             if (s == 2)
-                if (m.getValorMonetario() > 0)) System.out.println(m);
+                if (m.getValorMonetario() > 0) System.out.println(m);
         }
     }
 
     @Override
-    public void emitirRelatorio() {
+    public void emitirRelatorio(Operador o) {
         System.out.println(
-            "Conta " + this.idConta 
-            + ", criada por " + o.getNome() 
-            + "(" + o.getIniciais() + ")"
-            + " em " + this.dataCriacao
+                "Conta " + this.idConta
+                        + ", criada por " + o.getNome()
+                        + "(" + o.getIniciais() + ")"
+                        + " em " + this.dataCriacao
         );
 
         for (Movimentacao m : this.movimentacoes) System.out.println(m);
