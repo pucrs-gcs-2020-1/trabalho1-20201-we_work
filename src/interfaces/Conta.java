@@ -25,4 +25,6 @@ public interface Conta {
     public void emitirRelatorio(ArrayList<Operador> operadores);
 
     public void consultarMovimentacoesPorDespesaOuReceita(int s);
+
+    public String getIdContaT();
 }

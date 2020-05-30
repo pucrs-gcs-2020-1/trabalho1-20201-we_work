@@ -281,7 +281,7 @@ public class Menu {
 
     private void exibirContas() {
         print("No sistema existem as seguintes contas:\n");
-        for (Conta c : contas) print(c.getIdConta());
+        for (Conta c : contas) print(c.getIdContaT());
     }
 
     public static void print(String s) {

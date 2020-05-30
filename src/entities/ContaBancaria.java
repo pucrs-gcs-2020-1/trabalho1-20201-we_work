@@ -49,6 +49,10 @@ public class ContaBancaria implements Conta {
 
     @Override
     public String getIdConta() {
+        return this.idConta;
+    }
+
+    public String getIdContaT() {
         return "- " + this.idConta;
     }
 

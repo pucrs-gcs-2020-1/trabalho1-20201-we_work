@@ -60,7 +60,7 @@ public class Operador {
 
             Menu.print("Conta Criada");
         } else if(!isValid) {
-            print("Número de conta já existente")
+            Menu.print("Número de conta já existente");
         }
     }
 
