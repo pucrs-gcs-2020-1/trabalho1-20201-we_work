@@ -186,7 +186,7 @@ public class Menu {
                     print("Escreva a descrição deste crédito");
                     String d = in.next();
 
-                    print("Defina o valor para crédito");
+                    print("Defina o valor para crédito em centavos");
                     int v = in.nextInt();
 
                     operadorAtual.addCredito(contaAtual, d, v);
