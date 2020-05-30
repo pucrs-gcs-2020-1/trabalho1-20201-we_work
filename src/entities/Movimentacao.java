@@ -38,11 +38,14 @@ public class Movimentacao {
     }
 
     public static String montaValor(int v) {
-        int centavos = v % 100;
-        int decavos = v % 10;
         int real = v / 100;
+        int decavos = (v % 100) / 10;
+        int centavos = v % 10;
 
-        return "R$" + real + "," + decavos + centavos;
+		if (v < 0) 
+			return "-" + real + "," + decavos + centavos;
+
+        return real + "," + decavos + centavos;
     }
 
     @Override
@@ -54,3 +57,5 @@ public class Movimentacao {
                 + ", Valor: " + montaValor(this.valorMonetario);
     }
 }
+
+5011
