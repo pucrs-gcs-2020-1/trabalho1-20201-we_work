@@ -108,6 +108,7 @@ public class Menu {
         nome = in.nextLine(); 
 
         boolean isInvalid = true;
+        boolean newOperador = true;
         int id = -1;
 
         while (isInvalid && id == -1) {
@@ -116,6 +117,7 @@ public class Menu {
 
             for (Operador o : operadores) {
                 if (id == o.getIdOperador()) {
+                    newOperador = false;
                     print("Já existe um operador com este ID. Por favor, digite outro valor.");
                 } else {
                     isInvalid = false;
@@ -123,9 +125,11 @@ public class Menu {
             }
         }
 
-        operadores.add(new Operador(id, nome));
+        if (newOperador) {
+            operadores.add(new Operador(id, nome));
 
-        print("Novo Operador Cadastrado");
+            print("Novo Operador Cadastrado");
+        }
     }
 
     private String mostrarOperadorAtual() {
