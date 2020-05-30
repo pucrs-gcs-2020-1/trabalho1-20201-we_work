@@ -103,7 +103,7 @@ public class Menu {
 
         print("Digite o nome completo para o novo operador");
         String nome = "";
-        in = new Scanner(System.in);
+        in = new Scanner(System.in); // Gambeta
         nome = in.nextLine(); 
 
         boolean isInvalid = true;
@@ -165,6 +165,8 @@ public class Menu {
         }
 
         if (contaValida != null) {
+            contaAtual = contaValida;
+
             print("Conta selecionada");
 
             print("1 -> Adicionar crédito à conta selecionada");
