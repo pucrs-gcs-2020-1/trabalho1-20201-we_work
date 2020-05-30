@@ -17,7 +17,7 @@ public class Menu {
     static Conta contaAtual;
     static ArrayList<Conta> contas;
 
-    SistemaInicial sistemaInicial;
+    SistemaInicial sistemaInicial = new SistemaInicial();
 
     public Menu() {
         this.sistemaInicial = new SistemaInicial();
@@ -72,6 +72,7 @@ public class Menu {
                 System.out.println("Finalizando o Programa");
                 System.exit(0);
         }
+        mostrarOpcoes();
     }
 
     public static void mostrarOpcoes() {
@@ -101,7 +102,7 @@ public class Menu {
         exibirOperadores();
 
         System.out.println("Digite o nome completo para o novo operador");
-        String nome = in.nextLine();
+        String nome = in.next(); // TODO: 29/05/2020  Rever
 
         boolean isInvalid = true;
         int id = -1;
@@ -152,10 +153,10 @@ public class Menu {
     private void selecionarConta() {
         System.out.println("Digite o número da conta que deseja selecionar: \n");
 
-        String numeroConta = in.nextLine();
+        String numeroConta = in.next();
 
         for (Conta c : contas) {
-            if (c.getIdConta() == numeroConta) {
+            if (c.getIdConta().equals(numeroConta)) {
                 contaAtual = c;
             }
         }
@@ -175,7 +176,7 @@ public class Menu {
         switch (escolha) {
             case 1:
                 System.out.println("Escreva a descrição deste crédito");
-                String d = in.nextLine();
+                String d = in.next();
 
                 System.out.println("Defina o valor para crédito");
                 int v = in.nextInt();
@@ -193,7 +194,7 @@ public class Menu {
                 exibirContas();
                 System.out.println("Informe o número da conta destino:");
 
-                String numContaDestino = in.nextLine();
+                String numContaDestino = in.next();
 
                 if (numContaDestino.equals(contaAtual.getIdConta())) {
                     System.out.println("Você não pode transferir para si mesmo");
@@ -205,10 +206,12 @@ public class Menu {
                 for (Conta c : contas) {
                     if (c.getIdConta().equals(numContaDestino)) {
                         contaDestino = c;
-                    } else {
-                        System.out.println("Conta de destino invalida");
-                        break;
                     }
+                }
+
+                if (contaDestino == contaAtual){
+                    System.out.println("Conta de destino invalida");
+                    break;
                 }
 
                 System.out.println("Informe o valor desejado para transferência:");

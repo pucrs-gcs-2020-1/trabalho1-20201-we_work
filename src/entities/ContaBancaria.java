@@ -79,7 +79,7 @@ public class ContaBancaria implements Conta {
 
     @Override
     public void emitirRelatorio(ArrayList<Operador> operadores) {
-        String nome = '', iniciais = '';
+        String nome = "", iniciais = "";
 
         for (Operador o : operadores) {
             if (o.getIdOperador() == this.idOperador) {

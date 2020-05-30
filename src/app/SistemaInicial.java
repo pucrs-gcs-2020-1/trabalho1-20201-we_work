@@ -9,11 +9,8 @@ public class SistemaInicial {
     private ArrayList<Conta> contas;
 
     public SistemaInicial() {
-    }
-
-    public void teste(){
         this.contas = new ArrayList<>();
-        Conta c1 = new ContaBancaria("789456", "Mick Jagger",200);
+        Conta c1 = new ContaBancaria("789456", "Mick Jagger", 200);
         Conta c2 = new ContaBancaria("321539", "Maik Tyson", 5000);
         Conta c3 = new ContaBancaria("666666", "Angus Young", 8000);
         Conta c4 = new ContaBancaria("147951", "Cindy Louper", 808);
@@ -25,7 +22,7 @@ public class SistemaInicial {
         contas.add(c5);
     }
 
-    public ArrayList<Conta> getContas(){
+    public ArrayList<Conta> getContas() {
         return this.contas;
     }
 }
