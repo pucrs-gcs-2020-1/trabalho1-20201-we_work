@@ -38,12 +38,19 @@ public class Movimentacao {
     }
 
     public static String montaValor(int v) {
-        int real = (v / 100) * -1;
-        int decavos = ((v % 100) / 10) * -1;
-        int centavos = (v % 10) * -1;
+		int real, decavos, centavos;
 
-		if (v < 0) 
+		if (v < 0) {
+			real = (v / 100) * -1;
+			decavos = ((v % 100) / 10) * -1;
+			centavos = (v % 10) * -1;
+
 			return "-" + real + "," + decavos + centavos;
+		}
+
+		real = v / 100;
+		decavos = (v % 100) / 10;
+		centavos = v % 10;
 
         return real + "," + decavos + centavos;
     }
